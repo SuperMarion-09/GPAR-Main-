@@ -1,0 +1,433 @@
+/***
+==============
+ Footer
+ =============
+***/
+.main-footer-header{
+	color:#fff;
+}
+
+.post-style-one .inner-box .content-box .title .date {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: #39ff7b;
+    font-size: 30px;
+    font-weight: 400;
+    width: 62px;
+    line-height: 23px;
+    text-align: left;
+    text-transform: uppercase;
+    padding-right: 15px;
+    border-right: 3px solid #e7ebee;
+    font-family: 'Montserrat', sans-serif;
+}
+.services-section{
+	background-image:url(../images/background/sun-pattern.png);
+	background-repeat: repeat;
+}
+.services-section-why{
+    background-image:url(../images/background/leaves-pattern.png);
+    background-repeat: repeat;
+    text-align: center;
+}
+.services-section-reserve{
+    background-image:url(../images/background/leaves-pattern.png);
+    background-repeat: repeat;
+    position:relative;
+    padding:90px 0px 50px 0px;
+    background-position:left center;
+}
+.logo-box h2{
+	color: #fff;
+}
+ .panel-choose {
+   background-image: url("../images/background/full-bloom.png");
+   background-repeat: repeat;
+}
+.form-control  {
+    width: 40%;
+    border-radius: 0px;
+}
+.choose-type label {
+    color:green;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.list li {
+    list-style: decimal;
+}
+.gallery-item-three .inner-box .image-box .overlay-box > span {
+    margin: 50% 50%;
+    color: #fff;
+    text-align: center;
+}
+.inner-box  .pool-rates h3 {
+    position:relative;
+    font-size:45px;
+    color:#39ff7b;
+    font-family: 'Montserrat', sans-serif;
+}
+.inner-box  .pool-rates em {
+    font-size:15px;
+    color:#828c95;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+.ev .container .panel .form-group {
+   position:relative;
+    padding:0px 10px;
+    margin-bottom:20px;
+}
+.ev .container .panel {
+   position:relative;
+    padding:0px 10px;
+    margin-top:20px;
+}
+.ev .container .panel .form-group input[type='text'],.form-group input[type='email'] {
+    position:relative;
+    width: 90%;
+    border-radius: 2px;
+}
+.ev .container .panel {
+    background-color: #f9f9f9;
+}
+.ev .container .panel .form-group label span {
+    font-size:10px;
+    color:#9c9c9c;
+ }
+ .ev .container .panel .form-group label  {
+    color:#263e5b;
+ }
+ .divider {
+  height: 1px;
+  width:100%;
+  display:block; /* for use on default inline elements like span */
+  margin: 9px 0;
+  overflow: hidden;
+  background-color: #e5e5e5;
+}
+.panel-body .services-events h4,.panel-body .foods-events h4 {
+    font-size: 40px;
+    color:#263e5b;
+    font-weight: 40px;
+}
+.foods-events .inclusions img {
+    width: 150px;
+    height: 120px;
+}
+.food-events .inclusions td {
+
+}
+.food-events .inclusions td .price-items {
+    font-size: 70px;
+    color: #263e5b;
+} 
+.text-request textarea, .form-group textarea {
+    width: 96% !important; 
+}
+
+.panel-heading h3 {
+    color:#263e5b;
+    font-weight: 50;
+}
+
+
+/*****    ***/
+.product-content {
+    border: 2px solid #dfe5e9;
+    margin-bottom: 20px;
+    margin-top: 12px;
+    background: #fff;
+    padding: 4px;
+        -webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.37);
+}
+
+.product-content .carousel-control.left {
+    margin-left: 0
+}
+
+.product-content .product-image {
+    background-color: #fff;
+    display: block;
+    min-height: 238px;
+    overflow: hidden;
+    position: relative
+}
+
+.product-content .product-details {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative;
+    background: #fff
+}
+
+.product-content .product-details h3 a {
+    color: #39ff7b;
+    font-size: 35px;
+    line-height: 19px;
+    text-decoration: none;
+    padding-left: 0;
+    margin-left: 0
+}
+
+.product-content .product-details h5 a span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
+}
+
+
+.product-content .product-details span.sale {
+    background-color: #21c2f8
+}
+
+.product-content .product-details span.discount {
+    background-color: #71e134
+}
+
+.product-content .product-details span.hot {
+    background-color: #fa9442
+}
+
+.product-content .description {
+    font-size: 12.5px;
+    line-height: 20px;
+    padding: 10px 14px 16px 19px;
+    background: #fff
+}
+
+.product-content .product-info {
+    padding: 11px 19px 10px 20px
+}
+
+.product-content .product-info a.add-to-cart {
+    color: #2f383d;
+    font-size: 13px;
+    padding-left: 16px
+}
+
+.product-content name.a {
+    padding: 5px 10px;
+    margin-left: 16px
+}
+
+.product-info.smart-form .btn {
+    padding: 6px 12px;
+    margin-left: 12px;
+    margin-top: -10px
+}
+
+.product-entry .product-details {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative
+}
+
+.product-entry .product-details h5 a {
+    color: #2f383d;
+    font-size: 15px;
+    line-height: 19px;
+    text-decoration: none
+}
+
+.product-entry .product-details h5 a span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
+}
+
+.load-more-btn {
+    background-color: #21c2f8;
+    border-bottom: 2px solid #037ca5;
+    border-radius: 2px;
+    border-top: 2px solid #0cf;
+    margin-top: 20px;
+    padding: 9px 0;
+    width: 100%
+}
+
+.product-wrap {
+    background-color: #fff;
+}
+
+.product-info.smart-form .rating label {
+    margin-top: 0
+}
+
+.product-wrap .product-image span.tag2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    padding: 10px 0;
+    color: #fff;
+    font-size: 11px;
+    text-align: center
+}
+
+.product-wrap .product-image span.sale {
+    background-color: #57889c
+}
+
+.product-wrap .product-image span.hot {
+    background-color: #a90329
+}
+
+.shop-btn {
+    position: relative
+}
+
+.shop-btn>span {
+    background: #a90329;
+    display: inline-block;
+    font-size: 10px;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
+    font-weight: 700;
+    border-radius: 50%;
+    padding: 2px 4px 3px!important;
+    text-align: center;
+    line-height: normal;
+    width: 19px;
+    top: -7px;
+    left: -7px
+}
+
+.description-tabs {
+    padding: 30px 0 5px!important
+}
+
+.description-tabs .tab-content {
+    padding: 10px 0
+}
+
+.product-details {
+    padding: 30px 30px 50px
+}
+
+.product-details hr+.description-tabs {
+    padding: 0 0 5px!important
+}
+
+.product-details .carousel-control.left,
+.product-details .carousel-control.right {
+    background: none!important
+}
+
+.product-details .glyphicon {
+    color: #3276b1
+}
+
+.product-details .product-image {
+    border-right: 0px solid #fff !important
+}
+
+.product-details .name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.product-details .name small {
+    display: block
+}
+
+.product-details .name a {
+    margin-left: 0
+}
+
+.product-details .price-container {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 300
+}
+
+.product-details .price-container small {
+    font-size: 12px
+}
+
+.product-details .fa-2x {
+    font-size: 16px!important
+}
+
+.product-details .fa-2x>h5 {
+    font-size: 12px;
+    margin: 0
+}
+
+.product-details .fa-2x+a,
+.product-details .fa-2x+a+a {
+    font-size: 13px
+}
+
+.product-details .certified {
+    margin-top: 10px
+}
+
+.product-details .certified ul {
+    padding-left: 0
+}
+
+.product-details .certified ul li:not(first-child) {
+    margin-left: -3px
+}
+
+.product-details .certified ul li {
+    display: inline-block;
+    background-color: #f9f9f9;
+    padding: 13px 19px
+}
+
+.product-details .certified ul li:first-child {
+    border-right: none
+}
+
+.product-details .certified ul li a {
+    text-align: left;
+    font-size: 12px;
+    color: #6d7a83;
+    line-height: 16px;
+    text-decoration: none
+}
+
+.product-details .certified ul li a span {
+    display: block;
+    color: #21c2f8;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center
+}
+
+.product-details .message-text {
+    width: calc(100% - 70px)
+}
+
+@media only screen and (min-width:1024px) {
+    .product-content div[class*=col-md-4] {
+        padding-right: 0
+    }
+    .product-content div[class*=col-md-8] {
+        padding: 0 13px 0 0
+    }
+    .product-wrap div[class*=col-md-5] {
+        padding-right: 0
+    }
+    .product-wrap div[class*=col-md-7] {
+        padding: 0 13px 0 0
+    }
+    .product-content .product-image {
+        border-right: 1px solid #dfe5e9
+    }
+    .product-content .product-info {
+        position: relative
+    }
+}
+
+/***** */
