@@ -83,16 +83,15 @@
                     <li class="dropdown dropdown-user">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <img alt="" class="img-circle " src="assets/img/cover.jpg" />
-                            <span class="username username-hide-on-mobile">{{ auth()->User()->username}}</span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default animated bounceInDown">
                             <li>
-                                <a href="/admin/profile/user_profile">
+                                <a href="/admin/settings/profile">
                                     <i class="icon-user"></i> Profile </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="/admin/others/resort_setting">
                                         <i class="icon-settings"></i> Settings
                                     </a>
                                 </li>

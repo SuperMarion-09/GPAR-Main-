@@ -11,12 +11,10 @@ use Hash;
 class RegisterController extends Controller
 {
     //
-     public function __construct()
- 	 {
-    	$this->middleware('auth');
-
-   
-  	 }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 	public function create()
 	{
 		$this->validate(request(), [
@@ -49,6 +47,6 @@ class RegisterController extends Controller
 
 	public function show()
 	{
-		return view('admin.register.registerSavePre');
+		return view('admin.register.registerSave');
 	}
 }

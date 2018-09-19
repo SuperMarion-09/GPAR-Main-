@@ -21,11 +21,15 @@ class CreateUsersTable extends Migration
             $table->string('address');
             $table->string('contact_number');
             $table->string('position');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('gender');
+            $table->string('image_name');
+            $table->string('image_size');
             $table->rememberToken();
             $table->timestamps();
+            $table->datetime('deleted_at');
         });
     }
 

@@ -22,7 +22,10 @@ class CreateRoomsTable extends Migration
             $table->integer('room_status')->default(0);
             $table->string('room_tel_no');
             $table->text('room_cancellation_type');
+            $table->string('image_name');
+            $table->string('image_size');
             $table->timestamps();
+            $table->datetime('deleted_at');
         });
     }
 

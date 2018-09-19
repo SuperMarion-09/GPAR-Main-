@@ -1,6 +1,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1" name="viewport" />
+<meta name="_token" content="{{csrf_token()}}">
 <title>GrandPavilion</title>
 <!-- google font -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
@@ -49,7 +50,7 @@
 <!-- material -->
 <script src="/css/assets/plugins/material/material.min.js"></script>
 <!-- animation -->
-<script src="/css/assets/js/pages/ui/animations.js" ></script>
+<script src="css/assets/js/pages/ui/animations.js"></script>
 <!-- data tables -->
 <script src="/css/assets/plugins/datatables/jquery.dataTables.min.js" ></script>
 <script src="/css/assets/plugins/datatables/plugins/bootstrap/dataTables.bootstrap4.min.js" ></script>

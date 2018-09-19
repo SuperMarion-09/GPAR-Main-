@@ -68,222 +68,52 @@
                                                 <th class="center"> Descripton </th>
                                                 <th class="center"> Quantity </th>
                                                 <th class="center"> Price </th>
+                                                <th class="center"> Room Cancellation Type </th>
                                                 <th class="center"> Status </th>
                                                 <th class="center"> Action </th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($room as $rooms)
                                             <tr class="odd gradeX">
                                                 <td class="user-circle-img">
-                                                        <img src="" alt="">
+                                                        @if($rooms->image_name == "")
+                                                        <p> No Picture</p>
+                                                        @elseif($rooms->image_name == $rooms->image_name)
+                                                        <img src="{{asset('storage/upload/room/'.$rooms->image_name)}}" height="50" width="50"/>
+                                                        @endif
+
                                                 </td>
-                                                <td class="center">1</td>
-                                                <td class="center">Family</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2500</td>
+                                                <td class="center">{{$rooms->id}}</td>
+                                                <td class="center">{{$rooms->type}}</td>
+                                                <td class="center"> {{$rooms->room_description}}</td>
+                                                <td class="center">{{$rooms->room_quantity}}</td>
+                                                <td class="center">{{$rooms->room_price}}</td>
+                                                <td class="center">{{$rooms->room_cancellation_type}}</td>
                                                 <td class="center">
+                                                    @if($rooms->room_status==0)
                                                     <span class="label label-sm label-info">inactive</span>
+                                                    
+                                                    @else
+                                                     <span class="label label-sm label-success">active</span>
+                                                    @endif
                                                 </td>
                                                 <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
+                                                    <a href="/admin/room/edit/{{$rooms->id}}" class="btn btn-tbl-edit btn-xs">
                                                         <i class="fa fa-pencil"></i>
                                                     </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
+                                                    <form action="/admin/room/delete/{{$rooms->id}}" method="post">
+                                                        {{csrf_field()}}
+                                                        {{method_field('DELETE')}}
+                                                    <button class="btn btn-tbl-delete btn-xs">
                                                         <i class="fa fa-trash-o "></i>
-                                                    </a>
+                                                    </button>
+                                                    </form>
                                                 </td>
 
                                             </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">2</td>
-                                                <td class="center">Family</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2500</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">3</td>
-                                                <td class="center">family</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2500</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-success">active</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">4</td>
-                                                <td class="center">Family</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2500</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">1</td>
-                                                <td class="center">Standard</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2800</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">2</td>
-                                                <td class="center">Standard</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2800</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">3</td>
-                                                <td class="center">Standard</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2800</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">4</td>
-                                                <td class="center">Standard</td>
-                                                <td class="center">*good for 8 persons*</td>
-                                                <td class="center">8</td>
-                                                <td class="center">2800</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-success">active</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">9</td>
-                                                <td class="center">Jester's room</td>
-                                                <td class="center">*good for 2 persons*</td>
-                                                <td class="center">2</td>
-                                                <td class="center">1000</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                             <tr class="odd gradeX">
-                                                <td class="user-circle-img">
-                                                        <img src="" alt="">
-                                                </td>
-                                                <td class="center">10</td>
-                                                <td class="center">Justine's room</td>
-                                                <td class="center">*good for 2 persons*</td>
-                                                <td class="center">2</td>
-                                                <td class="center">1000</td>
-                                                <td class="center">
-                                                    <span class="label label-sm label-info">inactive</span>
-                                                </td>
-                                                <td class="center">
-                                                    <a href="edit-rooms.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+                                            @endforeach
+                                             
                                         </tbody>
                                     </table>
                                     </div>

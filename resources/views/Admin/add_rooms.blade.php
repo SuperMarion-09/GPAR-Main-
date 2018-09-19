@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-content-wrapper">
-	<form method="post" action="/admin/room/add_rooms">
+	<form method="post" action="/admin/room/add_rooms" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="page-content">
 			<div class="page-bar">
@@ -108,15 +108,15 @@
 				</div>
 				<div class="col-lg-12 p-t-20 text-center">
 					<label class="control-label col-md-3">Upload Room Photos</label>
-					<form id="id_dropzone" class="dropzone">
+					
 						<div class="dz-message">
-							<div class="dropIcon">
-								<i class="material-icons">cloud_upload</i>
-							</div>
+							
+								<input type="file" name="image">
+						
 							<h3>Drop files here or click to upload.</h3>
 							<em>(<strong>400 x 300</strong> recommended size in pixels)</em>
 						</div>
-					</form>
+					
 				</div>
 				<div class="col-lg-12 p-t-20 text-center"> 
 					<button type="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink">Submit</button>

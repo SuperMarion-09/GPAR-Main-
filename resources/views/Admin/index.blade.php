@@ -114,63 +114,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="odd gradeX">
-                                
-                                <td class="center">Juan Dela Cruz</td>
-                                <td class="center"><a href="tel:4444565756">
-                                4444565756 </a></td>
-                                <td class="center"><a href="mailto:rajesh@gmail.com ">
-                                jdc@gmail.com </a></td>
-                                <td class="center">23/04/2017</td>
-                                <td class="center">25/04/2017</td>
-                                <td class="center">Event</td>
-                                <td class="center">
-                                    <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <button class="btn btn-tbl-delete btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                
-                                <td class="center">Juan Dela Cruz</td>
-                                <td class="center"><a href="tel:4444565756">
-                                4444565756 </a></td>
-                                <td class="center"><a href="mailto:rajesh@gmail.com ">
-                                jdc@gmail.com </a></td>
-                                <td class="center">23/04/2017</td>
-                                <td class="center">25/04/2017</td>
-                                <td class="center">Event</td>
-                                <td class="center">
-                                    <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <button class="btn btn-tbl-delete btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr class="odd gradeX">
-                                
-                                <td class="center">Juan Dela Cruz</td>
-                                <td class="center"><a href="tel:4444565756">
-                                4444565756 </a></td>
-                                <td class="center"><a href="mailto:rajesh@gmail.com ">
-                                jdc@gmail.com </a></td>
-                                <td class="center">23/04/2017</td>
-                                <td class="center">25/04/2017</td>
-                                <td class="center">Event</td>
-                                <td class="center">
-                                    <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <button class="btn btn-tbl-delete btn-xs">
-                                        <i class="fa fa-trash-o "></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach($accepted as $accepted)
+                                            <tr class="odd gradeX">
+                                                
+                                                <td class="center">{{$accepted->fname}}&nbsp;{{$accepted->lname}}</td>
+                                                <td class="center">{{$accepted->contact_no}}</td>
+                                                <td class="center">{{$accepted->email}}</td>
+                                                <td class="center">{{$accepted->reservation_in}}</td>
+                                                <td class="center">{{$accepted->reservation_out}}</td>
+                                                <td class="center">{{$accepted->reservation_type}}</td>
+                                                <td class="center">
+                                                    <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
+                                                        <i class="fa fa-pencil"></i>
+                                                    </a>
+                                                    <button class="btn btn-tbl-delete btn-xs">
+                                                        <i class="fa fa-trash-o "></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                           
+                                           @endforeach
                             
                         </tbody>
                     </table>

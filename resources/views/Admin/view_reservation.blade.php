@@ -48,23 +48,24 @@
     														<th>Check In</th>
     														<th>Check Out</th>
     														<th>Contact</th>
-                                                            <th>Pax</th>
+                                                            
     														<th>Email</th>
                                                             <th>Name</th>
     														<th>Action</th>
     													</tr>
     												</thead>
     												<tbody>
+                                                        @foreach($pending_r as $room)
     													<tr>
-    														<td>1</td>
-    														<td>Standard</td>
-    														<td>4</td>
-    														<td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-    														<td>123456789</td>
-                                                            <td>3</td>
-    														<td>Sample@gmail.com</td>
-    														<td>Michael Pasagi</td>
+    														<td>{{$room->id}}</td>
+    														<td>{{$room->room_type}}</td>
+    														<td>{{$room->room_quantity}}</td>
+    														<td>{{$room->reservation_in}}</td>
+                                                            <td>{{$room->reservation_out}}</td>
+    														<td>{{$room->contact_no}}</td>
+                                
+    														<td>{{$room->email}}</td>
+    														<td>{{$room->fname}}&nbsp;{{$room->lname}}</td>
                                                             <td>
                                                                 <a href="" class="btn btn-tbl-edit btn-xs">
                                                                     <i class="fa fa-pencil"></i>
@@ -78,52 +79,7 @@
 
                                                             </td>
     													</tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Standard</td>
-                                                            <td>4</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>123456789</td>
-                                                            <td>3</td>
-                                                            <td>Sample@gmail.com</td>
-                                                            <td>Michael Pasagi</td>
-                                                            <td>
-                                                                <a href="" class="btn btn-tbl-edit btn-xs">
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                                 <button class="btn btn-tbl-accept btn-xs">
-                                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                                </button>
-                                                                <button class="btn btn-tbl-delete btn-xs">
-                                                                    <i class="fa fa-trash-o "></i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>Standard</td>
-                                                            <td>4</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>123456789</td>
-                                                            <td>3</td>
-                                                            <td>Sample@gmail.com</td>
-                                                            <td>Michael Pasagi</td>
-                                                            <td>
-                                                                <a href="" class="btn btn-tbl-edit btn-xs">
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                                 <button class="btn btn-tbl-accept btn-xs">
-                                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                                </button>
-                                                                <button class="btn btn-tbl-delete btn-xs">
-                                                                    <i class="fa fa-trash-o "></i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>
+                                                       @endforeach
     													
     													
     												</tbody>
@@ -160,24 +116,25 @@
                                                             <th>Event</th>
                                                             <th>Check In</th>
                                                             <th>Check Out</th>
-                                                            <th>Time out</th>
                                                             <th>Time in</th>
+                                                            <th>Time out</th>
                                                             <th>Pax</th>
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                         @foreach($pending_e as $event)
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>Michael Pasagi</td>
-                                                            <td>Sample@gmail.com</td>
-                                                            <td>123456789</td>
-                                                            <td>Birthday</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>10:00am</td>
-                                                            <td>5:00pm</td>
-                                                            <td>150</td>
+                                                            <td>{{$event->id}}</td>
+                                                            <td>{{$event->fname}}&nbsp;{{$event->lname}}</td>
+                                                            <td>{{$event->email}}</td>
+                                                            <td>{{$event->contact_no}}</td>
+                                                            <td>{{$event->event_name}}</td>
+                                                            <td>{{$event->reservation_in}}</td>
+                                                            <td>{{$event->reservation_out}}</td>
+                                                            <td>{{$event->time_in}}</td>
+                                                            <td>{{$event->time_out}}</td>
+                                                            <td>{{$event->services}}&nbsp;{{$event->foods}}</td>
                                                             <td>
                                                                 <a href="" class="btn btn-tbl-edit btn-xs">
                                                                     <i class="fa fa-pencil"></i>
@@ -192,29 +149,7 @@
                                                             </td>
                                                         </tr>
 
-                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>Michael Pasagi</td>
-                                                            <td>Sample@gmail.com</td>
-                                                            <td>123456789</td>
-                                                            <td>Birthday</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>10:00am</td>
-                                                            <td>5:00pm</td>
-                                                            <td>150</td>
-                                                            <td>
-                                                                <a href="" class="btn btn-tbl-edit btn-xs">
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                                 <button class="btn btn-tbl-accept btn-xs">
-                                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                                </button>
-                                                                <button class="btn btn-tbl-delete btn-xs">
-                                                                    <i class="fa fa-trash-o "></i>
-                                                                </button>
-                                                            </td>
-                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -248,23 +183,24 @@
                                                             <th>Contact</th>
                                                             <th>Check In</th>
                                                             <th>Check Out</th>
-                                                            <th>Time out</th>
                                                             <th>Time in</th>
-                                                            <th>Pax</th>
+                                                            <th>Time out</th>
+                                                            
                                                             <th>Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach($pending_p as $pool)
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>Jezreel Merza</td>
-                                                            <td>Sample@gmail.com</td>
-                                                            <td>123456789</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>10:00am</td>
-                                                            <td>5:00pm</td>
-                                                            <td>150</td>
+                                                            <td>{{$pool->id}}</td>
+                                                            <td>{{$pool->fname}}&nbsp;{{$pool->lname}}</td>
+                                                            <td>{{$pool->email}}</td>
+                                                            <td>{{$pool->contact_no}}</td>
+                                                            <td>{{$pool->reservation_in}}</td>
+                                                            <td>{{$pool->reservation_out}}</td>
+                                                            <td>{{$pool->time_in}}</td>
+                                                            <td>{{$pool->time_out}}</td>
+                                                            
                                                             <td>
                                                                 <a href="" class="btn btn-tbl-edit btn-xs">
                                                                     <i class="fa fa-pencil"></i>
@@ -279,29 +215,7 @@
                                                             </td>
                                                         </tr>
 
-                                                         <tr>
-                                                            <td>2</td>
-                                                            <td>Michael Pasagi</td>
-                                                            <td>Sample@gmail.com</td>
-                                                            <td>123456789</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>27/05/2016</td>
-                                                            <td>10:00am</td>
-                                                            <td>5:00pm</td>
-                                                            <td>150</td>
-                                                            <td>
-                                                                <a href="" class="btn btn-tbl-edit btn-xs">
-                                                                    <i class="fa fa-pencil"></i>
-                                                                </a>
-                                                                 <button class="btn btn-tbl-accept btn-xs">
-                                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                                </button>
-                                                                <button class="btn btn-tbl-delete btn-xs">
-                                                                    <i class="fa fa-trash-o "></i>
-                                                                </button>
-
-                                                            </td>
-                                                        </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -365,16 +279,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($accepted as $accepted)
                                             <tr class="odd gradeX">
                                                 
-                                                <td class="center">Juan Dela Cruz</td>
-                                                <td class="center"><a href="tel:4444565756">
-                                                        4444565756 </a></td>
-                                                <td class="center"><a href="mailto:rajesh@gmail.com ">
-                                                        jdc@gmail.com </a></td>
-                                                <td class="center">23/04/2017</td>
-                                                <td class="center">25/04/2017</td>
-                                                <td class="center">Event</td>
+                                                <td class="center">{{$accepted->fname}}&nbsp;{{$accepted->lname}}</td>
+                                                <td class="center">{{$accepted->contact_no}}</td>
+                                                <td class="center">{{$accepted->email}}</td>
+                                                <td class="center">{{$accepted->reservation_in}}</td>
+                                                <td class="center">{{$accepted->reservation_out}}</td>
+                                                <td class="center">{{$accepted->reservation_type}}</td>
                                                 <td class="center">
                                                     <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
                                                         <i class="fa fa-pencil"></i>
@@ -384,44 +297,8 @@
                                                     </button>
                                                 </td>
                                             </tr>
-                                            <tr class="odd gradeX">
-                                                
-                                                <td class="center">Juan Dela Cruz</td>
-                                                <td class="center"><a href="tel:4444565756">
-                                                        4444565756 </a></td>
-                                                <td class="center"><a href="mailto:rajesh@gmail.com ">
-                                                        jdc@gmail.com </a></td>
-                                                <td class="center">23/04/2017</td>
-                                                <td class="center">25/04/2017</td>
-                                                <td class="center">Event</td>
-                                                <td class="center">
-                                                    <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <button class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                
-                                                <td class="center">Juan Dela Cruz</td>
-                                                <td class="center"><a href="tel:4444565756">
-                                                        4444565756 </a></td>
-                                                <td class="center"><a href="mailto:rajesh@gmail.com ">
-                                                        jdc@gmail.com </a></td>
-                                                <td class="center">23/04/2017</td>
-                                                <td class="center">25/04/2017</td>
-                                                <td class="center">Event</td>
-                                                <td class="center">
-                                                    <a href="edit_booking.html" class="btn btn-tbl-edit btn-xs">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <button class="btn btn-tbl-delete btn-xs">
-                                                        <i class="fa fa-trash-o "></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
+                                           
+                                           @endforeach
                                             
                                         </tbody>
                                     </table>

@@ -15,10 +15,18 @@ class CreatePoolsTable extends Migration
     {
         Schema::create('pools', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('price_per_head');
+            $table->string('pool_type');
+            $table->string('pool_status')->default(0);
+            $table->integer('pool_price');
+            $table->string('price_per_head_day');
+            $table->string('price_per_head_night');
             $table->string('minimum_pax');
             $table->text('pool_description');
+            $table->integer('pool_quantity')->default(1);
+            $table->string('image_name');
+            $table->string('image_size');
             $table->timestamps();
+            $table->datetime('deleted_at')->default(Null);
         });
     }
 

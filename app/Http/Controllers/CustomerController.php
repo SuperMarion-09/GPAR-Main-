@@ -14,6 +14,10 @@ class CustomerController extends Controller
     {
     	return view('customer.amenities.a-pools');
     }
+     public function a_event()
+    {
+        return view('customer.amenities.a-events');
+    }
      public function a_room()
     {
     	return view('customer.amenities.a-rooms');

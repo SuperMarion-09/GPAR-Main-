@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="page-content-wrapper">
-	<form method="post" action="/admin/pool/add_pools">
+	<form method="post" action="/admin/pool/add_pools" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="page-content">
 			<div class="page-bar">
@@ -39,46 +39,81 @@
 				<div class="card-body row">
 					<div class="col-lg-12 p-t-20"> 
 						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="addPricePerHead">
-							<label class="mdl-textfield__label" for="sample2">Rate per head (price of pax per head)</label>
-							<span class="mdl-textfield__error">Input is not a number!</span>
+							<input class="mdl-textfield__input" type="text" name="pool_type">
+							<label class="mdl-textfield__label" for="sample2">Pool type</label>
+							<span class="mdl-textfield__error">Required Input</span>
 						</div>
 					</div>
+
+				
 					<div class="col-lg-12 p-t-20"> 
 						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="addPoolPax">
-							<label class="mdl-textfield__label" for="sample2">Minimum number of pax (input numbers only) </label>
+							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="pool_price">
+							<label class="mdl-textfield__label" for="sample2">Pool Price (For Private Usage)</label>
 							<span class="mdl-textfield__error">Input is not a number!</span>
 						</div>
-						<div class="col-lg-12 p-t-20"> 
-							<div class = "mdl-textfield mdl-js-textfield txt-full-width">
-								<textarea class = "mdl-textfield__input" rows =  "4" 
-								id = "education" name="description" required></textarea>
-								<label class = "mdl-textfield__label" for = "text7">Description</label>
+						
+						
+							
+							<div class="col-lg-12 p-t-20"> 
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="min_pax">
+									<label class="mdl-textfield__label" for="sample2">Minimum number of pax (input numbers only) </label>
+									<span class="mdl-textfield__error">Input is not a number!</span>
+								</div>
 							</div>
 						</div>
-						<div class="col-lg-12 p-t-20 text-center">
-							<label class="control-label col-md-3">Upload Pool Photos</label>
-							<!-- <form id="id_dropzone" class="dropzone">
-								<div class="dz-message">
-									<div class="dropIcon">
-										<i class="material-icons">cloud_upload</i>
-									</div>
-									<h3>Drop files here or click to upload.</h3>
-									<em>(400 x 300 recommended size in pixels)
-									</em>
-								</div>
-							</form> -->
-						</div>
-						<div class="col-lg-12 p-t-20 text-center"> 
-							<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" name="btnSubmit">Submit</button>
-							<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+					
+				
+					<div class="col-lg-12 p-t-20"> 
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="addPricePerHead_day">
+							<label class="mdl-textfield__label" for="sample2">Daytime rate per head (price of pax per head)</label>
+							<span class="mdl-textfield__error">Input is not a number!</span>
 						</div>
 					</div>
+
+				
+					<div class="col-lg-12 p-t-20"> 
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
+							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="addPricePerHead_night">
+							<label class="mdl-textfield__label" for="sample2">Night rate per head (price of pax per head)</label>
+							<span class="mdl-textfield__error">Input is not a number!</span>
+						</div>
+					</div>
+
+				
+					<div class="col-lg-12 p-t-20"> 
+						<div class = "mdl-textfield mdl-js-textfield txt-full-width">
+							<textarea class = "mdl-textfield__input" rows =  "4" 
+							id = "education" name="description" required></textarea>
+							<label class = "mdl-textfield__label" for = "text7">Description</label>
+						</div>
+					</div>
+				
+
+				<div class="col-lg-12 p-t-20 text-center">
+					<label class="control-label col-md-3">Upload Pool Photos</label>
+
+					<div class="dz-message">
+
+						<input type="file" name="image">
+
+						<h3>Drop files here or click to upload.</h3>
+						<em>(400 x 300 recommended size in pixels)
+						</em>
+					</div>
+
+				</div>
+				<div class="col-lg-12 p-t-20 text-center"> 
+					<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 btn-pink" name="btnSubmit">Submit</button>
+					<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
 				</div>
 			</div>
-		</div> 
+		</div>
 	</div>
+</div> 
+</div>
 </form>
 </div>
 

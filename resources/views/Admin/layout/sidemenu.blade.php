@@ -11,17 +11,20 @@
                                             <div class="user-panel">
                                                 <div class="row">
                                                     <div class="sidebar-userpic">
-                                                        <img src="/css/assets/img/cover.jpg" class="img-responsive" alt=""> </div>
+
+                                                        <img src="{{asset('storage/upload/staff/'.Auth::user()->image_name)}}" class="img-responsive" alt=""> </div>
+                                                        
                                                     </div>
                                                     <div class="profile-usertitle">
-                                                        <div class="sidebar-userpic-name">{{ auth()->User()->first_name}} {{ auth()->User()->last_name}}  </div>
-                                                        <div class="profile-usertitle-job"> {{auth()->User()->position}} </div>
+                                                        <div class="sidebar-userpic-name"> {{Auth::user()->first_name}}&nbsp;{{Auth::user()->last_name}} </div>
+                                                        <div class="profile-usertitle-job"> {{Auth::user()->position}} </div>
                                                     </div>
+                                                   
                                                     <div class="sidebar-userpic-btn">
-                                                        <a class="tooltips" href="user_profile" data-placement="top" data-original-title="Profile">
+                                                        <a class="tooltips" href="/admin/settings/profile" data-placement="top" data-original-title="Profile">
                                                             <i class="material-icons">settings</i>
                                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a class="tooltips" href="login.html" data-placement="top" data-original-title="Logout">
+                                                        <a class="tooltips" href="" data-placement="top" data-original-title="Logout">
                                                             <i class="material-icons">input</i>
                                                         </a>
                                                     </div>
@@ -83,12 +86,12 @@
                                                 </a>
                                                 <ul class="sub-menu">
                                                     <li class="nav-item">
-                                                        <a href="view-items.html" class="nav-link ">
+                                                        <a href="/admin/event/view_items" class="nav-link ">
                                                             <span class="title">View items</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="add-items.html" class="nav-link ">
+                                                        <a href="/admin/event/add_items" class="nav-link ">
                                                             <span class="title">Add items</span>
                                                         </a>
                                                     </li>
@@ -142,13 +145,13 @@
                                                 </a>
                                                 <ul class="sub-menu">
                                                     <li class="nav-item">
-                                                        <a href="/admin/manage/view_admin" class="nav-link ">
-                                                            <span class="title">View admin</span>
+                                                        <a href="/admin/manage/view_staff" class="nav-link ">
+                                                            <span class="title">View Staff</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="/admin/manage/view_customer" class="nav-link ">
-                                                            <span class="title">View customer</span>
+                                                        <a href="/admin/manage/add_staff" class="nav-link ">
+                                                            <span class="title">Add Staff</span>
                                                         </a>
                                                     </li>
                                                 </ul>

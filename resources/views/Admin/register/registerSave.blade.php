@@ -37,7 +37,7 @@
 					</div>
 					<div class="form-group">
 						<label>Position:</label>
-						<input type="text" name="position" value="Admin" class='form-control' disabled>
+						<input type="text" name="position" value="Admin" class='form-control'>
 					</div>
 				</div>
 
