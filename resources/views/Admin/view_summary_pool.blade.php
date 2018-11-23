@@ -90,12 +90,12 @@
 												</tr>
 
 												<tr>
-													<td><b>Check-in date:</b>&nbsp;<span>{{$date_in}}</span></td>
+													<td><b>Check-in date:</b>&nbsp;<span>{{\Carbon\carbon::parse($date_in)->format('F j, Y')}}</span></td>
 													<input type="hidden" name="date_in" value="{{$date_in}}">
 													<td><b>Time in:</b>&nbsp;<span>{{$time_in}}</span></td>
 													<input type="hidden" name="time_in" value="{{$time_in}}">
 													<tr>
-														<td><b>Check-out date:</b>&nbsp;<span>{{$date_out}}</span></td>
+														<td><b>Check-out date:</b>&nbsp;<span>{{\Carbon\carbon::parse($date_out)->format('F j, Y')}}</span></td>
 														<input type="hidden" name="date_out" value="{{$date_out}}">
 														<td><b>Time out:</b>&nbsp;<span>{{$time_out}}</span></td>
 														<input type="hidden" name="time_out" value="{{$time_out}}">

@@ -101,12 +101,12 @@
 														</tr>
 
 														<tr>
-															<td><b>Check-in date:</b>&nbsp;<span>{{$date_in}}</span></td>
+															<td><b>Check-in date:</b>&nbsp;<span>{{\Carbon\carbon::parse($date_in)->format('F j, Y')}}</span></td>
 															<input type="hidden" name="date_in" value="{{$date_in}}">
 															<td><b>Time in:</b>&nbsp;<span>{{$time_in}}</span></td>
 															<input type="hidden" name="time_in" value="{{$time_in}}">
 															<tr>
-																<td><b>Check-out date:</b>&nbsp;<span>{{$date_out}}</span></td>
+																<td><b>Check-out date:</b>&nbsp;<span>{{\Carbon\carbon::parse($date_out)->format('F j, Y')}}</span></td>
 																<input type="hidden" name="date_out" value="{{$date_out}}">
 																<td><b>Time out:</b>&nbsp;<span>{{$time_out}}</span></td>
 																<input type="hidden" name="time_out" value="{{$time_out}}">
@@ -116,10 +116,17 @@
 														<tr>
 															<td colspan="2 center"><center><h4><b>Pool Type</b></center></h4>
 															</tr>
-															<tr>
+
 																<tr>
 																	<td colspan="2 center"><center>{{$pool_type}}</center></h4>
 																		<input type="hidden" name="pool_type" value="{{$pool_type}}">
+																	</tr>
+																	<td colspan="2 center"><center><h4><b>No of Pax:</b></center></h4>
+															</tr>
+
+																<tr>
+																	<td colspan="2 center"><center>{{$pool_pax}}</center></h4>
+																		<input type="hidden" name="pool_pax" value="{{$pool_pax}}">
 																	</tr>
 																	<tr>
 
@@ -131,7 +138,8 @@
 																	</tbody>
 																	<tr>
 																		<td colspan="2">
-																			<a class="btn btn-info btn-success btn-lg pull-right" data-toggle="modal" data-target="#submit" data-id="" href="paymet.html">Next</a>
+																			<a class="btn btn-success btn-lg pull-right" data-toggle="modal" data-target="#submit" data-id="" href="paymet.html">Cash</a>
+																			<a class="btn btn-info btn-lg pull-right paypal" data-toggle="modal" data-target="#paypal" data-id="{{$pool_price}}" href="paymet.html">Paypal</a>
 
 																		</td>
 																	</tr>
@@ -212,28 +220,52 @@
 							</div>
 						</section>
 						<div class="modal fade" id="submit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-								
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
 									
 									<div class="modal-body">
 										
-										<p>Mode of payment, Cash or Paypal?</p>
+										<p>Thank you for reserving!</p>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Paypal</button>
-										<button type="submit" class="btn btn-primary">Cash</button>
+										<button type="button" class="btn btn-secondary"  data-dismiss="modal">Cancel</button>
+										<button type="submit" name="btnSubmit" value="Cash" class="btn btn-primary">Cash</button>
 									</div>
-								
+
+								</div>
 							</div>
 						</div>
-					</div>
+						<div class="modal fade" id="paypal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+
+									
+									<div class="modal-body">
+										<input type="hidden" name="amount" class="paypal_amount">
+										<label>Pay with Paypal</label>
+										
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"  data-dismiss="modal">Cancel</button>
+										<button type="submit" name="btnSubmit" value="Paypal" class="btn btn-primary">Paypal</button>
+									</div>
+
+								</div>
+							</div>
+						</div>
 </form>
 
 
@@ -242,20 +274,21 @@
 						<script type="text/javascript">
 							$(document).ready(function() {
 
-								$('.personal_info').click(function(){
 
-									$('#personal').show();
-									$('#pool').hide();
+							$('.paypal').click(function(){
 
-								});
-								$('.reserve_info').click(function(){
+								var record_id = $(this).data('id');
 
-									$('#personal_info').hide();
-									$('#event_reserve').show();
+								$('.paypal_amount').val(record_id);
 
-								});
+								var pay = $('#payer').val();
+								
+
+								$('#amount').html(pay);
 
 							});
+
+						});
 
 						</script>
 						@endsection

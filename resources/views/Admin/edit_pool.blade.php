@@ -52,21 +52,7 @@
 							</div>
 						</div>
 
-							<div class="col-lg-12 p-t-20"> 
-								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" value="{{$id->price_per_head_day}}" name="new_add_price_day" id="sample2">
-									<label class="mdl-textfield__label" for="sample2">Daytime rate per head (price of pax per head)</label>
-									<span class="mdl-textfield__error">Input is not a number!</span>
-								</div>
-							</div>
-
-							<div class="col-lg-12 p-t-20"> 
-								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-									<input class="mdl-textfield__input" type="text" name="new_add_price_night" pattern="-?[0-9]*(\.[0-9]+)?" value="{{$id->price_per_head_night}}" id="sample2">
-									<label class="mdl-textfield__label" for="sample2">Night rate per head (price of pax per head)</label>
-									<span class="mdl-textfield__error">Input is not a number!</span>
-								</div>
-							</div>
+							
 
 							<div class="col-lg-12 p-t-20"> 
 								<div class = "mdl-textfield mdl-js-textfield txt-full-width">

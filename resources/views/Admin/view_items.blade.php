@@ -4,6 +4,7 @@
 <div class="page-content-wrapper">
 	<div class="page-content">
 		<div class="page-bar">
+			@include('sweet::alert')
 			<div class="page-title-breadcrumb">
 				<div class=" pull-left">
 					<div class="page-title">All Items</div>
@@ -70,6 +71,8 @@
 											<img src="{{asset('storage/upload/items/foods/'.$event->image_name)}}" alt="">
 											@elseif($event->category=='services')
 											<img src="{{asset('storage/upload/items/services/'.$event->image_name)}}" alt="">
+											@elseif($event->category=='pavilion')
+											<img src="{{asset('storage/upload/items/pavilion/'.$event->image_name)}}" alt="">
 											@else
 											<p>No Picture</p>
 											@endif

@@ -1,4 +1,5 @@
 <!--Main Footer-->
+@foreach($settings as $setting)
 <footer class="main-footer">
    <div class="auto-container">
 
@@ -41,8 +42,8 @@
                <div class="widget-content">
                    <ul>
                        <li>Fausto St. Km 37 Pulong Buhangin Santa Maria, Bulacan 3022</li>
-                       <li> 0922 827 5767</li>
-                       <li>grandpavilionhotel@gmail.com</li>
+                       <li>{{$setting->contact_no}}</li>
+                       <li>{{$setting->email}}</li>
                    </ul>
                </div>
            </div>
@@ -63,4 +64,5 @@
 </div>
 </div>
 </footer>
+@endforeach
 <!--End Main Footer-->

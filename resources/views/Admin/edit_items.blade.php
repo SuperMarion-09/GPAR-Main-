@@ -29,6 +29,7 @@
 						<div class="col-lg-6">
 							
 								<small id="label" class="text-muted">Category</small>
+								<input type="hidden" name="category" value="{{$id->category}}">
 								<select class="form-control" name="category_type"  onchange="show_category(this.value)" arialabelledby="label">
 									
 									<option value="{{$id->category}}">{{$id->category}}</option>

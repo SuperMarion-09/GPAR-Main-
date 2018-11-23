@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="page-content-wrapper">
+	@include('sweet::alert')
 	<form method="post" action="/admin/pool/add_pools" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="page-content">
@@ -65,22 +66,6 @@
 						</div>
 					
 				
-					<div class="col-lg-12 p-t-20"> 
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="addPricePerHead_day">
-							<label class="mdl-textfield__label" for="sample2">Daytime rate per head (price of pax per head)</label>
-							<span class="mdl-textfield__error">Input is not a number!</span>
-						</div>
-					</div>
-
-				
-					<div class="col-lg-12 p-t-20"> 
-						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label txt-full-width">
-							<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2" name="addPricePerHead_night">
-							<label class="mdl-textfield__label" for="sample2">Night rate per head (price of pax per head)</label>
-							<span class="mdl-textfield__error">Input is not a number!</span>
-						</div>
-					</div>
 
 				
 					<div class="col-lg-12 p-t-20"> 

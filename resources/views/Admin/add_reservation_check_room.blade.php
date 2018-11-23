@@ -17,6 +17,17 @@
 			</div></center>
 
 			@endif
+			@if(count($errors))
+			<div class="col col-md-12">
+				<div class="alert alert-danger">
+					<ul>
+						@foreach($errors->all() as $error)
+						<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+			@endif
 
 			<div class="page-bar">
 				<div class="page-title-breadcrumb">
@@ -49,16 +60,17 @@
 						</div>
 						
 
-
+<input type="hidden" name="date_in" value="{{$in}}">
+							<input type="hidden" name="date_out" value="{{$out}}">
 
 						<div class="col col-lg-12">
 							<label>Check In</label>
-							<input class="form-control date_1" type="date" name="date_in"  id="date_in"  value="{{$in}}" placeholder="Check-in Date" readonly  required>
+							<input class="form-control date_1" type="date" id="date_in"  value="{{$in}}" placeholder="Check-in Date" readonly  required>
 
 						</div>
 						<div class="col col-lg-12">
 							<label>Check Out</label>
-							<input class="form-control date_2" type="date" name="date_out" id="date_out" value="{{$out}}" placeholder="Check-out Date" readonly required>
+							<input class="form-control date_2" type="date"  id="date_out" value="{{$out}}" placeholder="Check-out Date" readonly required>
 
 						</div>
 					</div>  
@@ -70,7 +82,7 @@
 						<div id="event_reserve">
 							<div class="card-box">
 								<div class="card-head">
-									<header>Event Reservation</header>
+									<header>Room Reservation</header>
 								</div>
 								<div class="card-body ">
 
@@ -139,6 +151,7 @@
 																		@endforeach
 																		<p class="available-rooms">
 																			<center><span><b><em>Rooms Availability: {{$temp_room_quantity}}</b></em></span><br>
+																				<input type="hidden" name="available_rooms" value="{{$temp_room_quantity}}">
 																				</center>
 																			</p>
 																			<span class="tag1"></span> 

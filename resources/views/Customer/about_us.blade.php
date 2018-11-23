@@ -4,6 +4,7 @@
 
 <!--HEADER SECTION About-us--> 
 <section class="page-title" style="background-image:url(css/images/background/gallery-head.jpg);">
+	@include('sweet::alert')
 	<div class="auto-container">
 		<!--Title Box-->
 		<div class="title-box">
@@ -31,6 +32,7 @@
 					<div class="text">The Grand Pavilion and Resort is also a great venue. it can handle all types and sizes of receptions-be it a wedding, birthday, baptismal, meeting and more. With its coffee shop, restaurant, videoke bar, and fully equipped functions room.</div>
 				</div>
 			</div>
+
 
 			<!--Images Column-->
 			<div class="images-column col-md-6 col-sm-12 col-xs-12">
@@ -68,6 +70,7 @@
 								</div>
 							</div>
 						</div>
+						
 
 					</div>
 				</div>

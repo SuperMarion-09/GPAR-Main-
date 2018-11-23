@@ -5,6 +5,7 @@
 	{{csrf_field()}}
 <div class="page-content-wrapper">
 	<div class="page-content">
+		@include('sweet::alert')
 		<div class="page-bar">
 			<div class="page-title-breadcrumb">
 				<div class=" pull-left">

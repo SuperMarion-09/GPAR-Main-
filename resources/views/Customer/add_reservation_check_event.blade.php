@@ -16,10 +16,10 @@
 		</div>
 	</div>
 </section>
+
 <!-- HEADER SECTION RESERVATION E-->
 <!-- start reservation header -->
-<form action="/reservation/summary" method="post">
-	{{csrf_field()}}
+
 	<section class="book-section">
 		<div class="auto-container">
 
@@ -38,7 +38,29 @@
 				</div>
 
 				<!--Form Column-->
+				@if(session()->has('notif'))
 
+				<center><div class="col col-md-8 ">
+					<div class="alert alert-info ">
+						<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>Notification</strong><p><center>{{session()->get('notif')}}</center></p>
+					</div>
+				</div></center>
+
+				@endif
+				@if(count($errors))
+				<div class="col col-md-12">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+				@endif
+<form action="/reservation/summary" method="post">
+	{{csrf_field()}}
 				<div class="form-column col-lg-10 col-md-12 col-sm-12 col-xs-12">
 					<div class="inner-box">
 
@@ -62,17 +84,18 @@
 									<div class="form-group col-md-3 col-sm-6 col-xs-12">
 										<div class="group-inner">
 											<label>Check In</label>
-											<input type="text" name="date_in" id="checkindate" value="{{$in}}" disabled placeholder="Select Date" required>
+											<input type="text"  id="checkindate" value="{{$in}}" disabled placeholder="Select Date" required>
 										</div>
 									</div>
 
 									<div class="form-group col-md-3 col-sm-12 col-xs-12">
 										<div class="group-inner">
 											<label>Check Out</label>
-											<input type="text" name="date_out" id="checkoutdate" value="{{$out}}" disabled placeholder="Select Date" required>
+											<input type="text"  id="checkoutdate" value="{{$out}}" disabled placeholder="Select Date" required>
 										</div>
 									</div>
-
+										<input type="hidden" name="date_in" value="{{$in}}">
+							<input type="hidden" name="date_out" value="{{$out}}">
 
 								</div>
 							</div>
@@ -94,7 +117,7 @@
 						<!-- form start -->
 
 						<div class="panel panel-default">
-							<div class="panel-heading"><h3>Pool Reservation</h3></div>
+							<div class="panel-heading"><h3>Event Reservation</h3></div>
 							<div class="panel-body">
 								<!-- personal info start -->
 								<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
@@ -103,7 +126,7 @@
 								</div>
 								<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
 									<label for="time-out-pool">Time out: </label>
-									<input class="form-control" type="time" name="time_out" placeholder="" required/>
+									<input class="form-control" type="time" name="time_out" placeholder=""/>
 								</div>
 								<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
 									<small id="label" class="text-muted">Event Name</small>
@@ -112,6 +135,8 @@
 								<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
 									<small id="label" class="text-muted">Event Motif</small>
 									<input type="text" class="form-control" placeholder="Event Motif" required name="event_motif" aria-describedby="label">
+									<input type="hidden" name="date_in" value="{{$in}}">
+									<input type="hidden" name="date_out" value="{{$out}}">
 								</div>
 							</div>
 						</div>
@@ -119,241 +144,311 @@
 							<h3>Services and Food</h3>
 							<hr>
 							<div class="divider"> </div>
+										@foreach($event_pax as $event)
+										<center><div><strong>Note:</strong><p>Our foods per dish are good for {{$event->max_pax}} person only</p></div></center>
+										@break
+										@endforeach
+										<div class="form-row">
+										<div class="col-md-12">          
+											<center>
+												<label>Number of additional pax:@foreach($event_pax as $event)
+												<em><small><br>Php {{$event->add_price}} per head</small></em>
+												@break
+												@endforeach</label><input class="form-control" type="number" value="0" name="add_pax"><br>
+												
+											</center>
+										</div>
+										</div>
+							<div class="divider"> </div>
 							<H3>INCLUSIONS</H3>
 							<div class="divider"></div>
 							<div class="row">
 								<!-- food list start -->
 								<div class="foods-events">
-									<H3>Foods</H3>
+									<H4>Foods</H4>
 									<div class="divider"></div>
-									<div class=" col-md-12 nopad text-center">
-										<table class="table table-condensed">
-											<thead>
-												<tr>
-													<th colspan="3"><center></center></th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($events as $event)
-												@if($event->category=='foods')
-												<td>
-													<label class="image-checkbox"><img class="" src="{{asset('storage/upload/items/foods/'.$event->image_name)}}" height="150" width="150" />
-														<input type="checkbox" name="foods[]" value="{{$event->item_name}}" />
-														<i class="glyphicon glyphicon-ok hidden"></i></label>
-														<div class="desc"><h5>{{$event->item_name}}</h5></div>
-												</td>
-													@endif
-													@endforeach
-											</tbody>
-										</table>
-									</div>
-										<H3>Services</H3>
-										<div class="divider"></div>
-										<div class="col-md-12 nopad text-center">
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th colspan="3"><center></center></th>
-													</tr>
-												</thead>
-												<tbody>
-													@foreach($events as $event)
-													@if($event->category=='services')
+									<table>
+										@foreach($events as $event)
+										<td>
+											@if($event->category=='foods')
+											<div class=" col-md-6 nopad text-center">
 
-													<td>
-														<label class="image-checkbox"><img class="" src="{{asset('storage/upload/items/services/'.$event->image_name)}}" height="150" width="150" />
-															<input type="checkbox" name="services[]" value="{{$event->item_name}}" />
-															<i class="glyphicon glyphicon-ok hidden"></i></label>
-															<div class="desc"><h5>{{$event->item_name}}</h5></div>
-														</td>
-
-														@endif
-														@endforeach
-													</tbody>
-												</table>
+												<label class="image-checkbox">
+													<img class="" src="{{asset('storage/upload/items/foods/'.$event->image_name)}}" height="150" width="150" />
+													<input type="checkbox" name="foods[]" value="{{$event->item_name}}" />
+													<i class="glyphicon glyphicon-ok hidden"></i>
+												</label>
+												<div class="desc"><b>{{$event->item_name}}</b></div>
 											</div>
-											<div class="divider"></div>
-											<div>
-												@foreach($pavk as $pav)
-												<section id="{{$pav->item_name}}" ">
-													<div class="container">
-														<div class="product-content product-wrap clearfix">
-															<div class="row">
-																<div class="col-md-5 col-sm-12 col-xs-12">
-																	<div class="product-image">
-																		@if($pav->image_name!="") 
-																		<img src="{{asset('storage/upload/items/pavilion/'.$pav->image_name)}}" alt="194x228" class="img-responsive">
-																		@else
-																		<p >No Picture Available</p>
-																		@endif
-																	</div>
-																</div>
-																<div class="col-md-7 col-sm-12 col-xs-12">
-																	<div class="product-details">
-																		<h2 class="name">
-																			<a href="#">
-																				<input type="hidden" name="pav_type" value="{{$pav->item_name}}">
-																				<center>{{$pav->item_name}}</center>
-																			</a>
-																		</h2>
-																		<p class="price-container">
-																			<center><span><b><em>Private Usage Price: </b>{{$pav->item_price}}php</em></span></center>
-																			<input type="hidden" name="pav_price" value="{{$pav->item_price}}">
-																		</p>
-																		@endforeach
-																		
-																		<span class="tag1"></span> 
-																	</div>
-																	@foreach($pavk as $pav)
-																	<div class="description">
-																		<center><span><b><em>Pavilion Description</em></b></span>
-																			<p>{{$pav->item_description}}. </p></center>
-																			<input type="hidden" name="pav_description" value="{{$pav->item_description}}">
-																			<ul class="list-group">
 
-																			</ul>
-																		</div>
-																	</div>
+											@endif
+											@endforeach
+										</td>
+									</table>
+									<H4>Services</H4>
+									<div class="divider"></div>
+									<table>
+										@foreach($events as $event)
+										<td>
+											@if($event->category=='services')
+
+											<div class=" col-md-6 nopad text-center">
+												<label class="image-checkbox">
+													<img class="" src="{{asset('storage/upload/items/services/'.$event->image_name)}}" height="150" width="150" />
+													<input type="checkbox" name="services[]" value="{{$event->item_name}}" />
+													<i class="glyphicon glyphicon-ok hidden"></i>
+
+												</label>
+												<div class="desc"><b>{{$event->item_name}}</b></div>
+											</div>
+											@endif
+										</td>
+										@endforeach
+									</table>
+									<div class="divider"></div>
+									<div>
+										@foreach($pavk as $pav)
+										<section id="{{$pav->item_name}}" ">
+											<div class="container">
+												<div class="product-content product-wrap clearfix">
+													<div class="row">
+														<div class="col-md-5 col-sm-12 col-xs-12">
+															<div class="product-image">
+																@if($pav->image_name!="") 
+																<img src="{{asset('storage/upload/items/pavilion/'.$pav->image_name)}}" alt="194x228" class="img-responsive">
+																@else
+																<p >No Picture Available</p>
+																@endif
+															</div>
+														</div>
+														<div class="col-md-7 col-sm-12 col-xs-12">
+															<div class="product-details">
+																<h2 class="name">
+																	<a href="#">
+																		<input type="hidden" name="pav_type" value="{{$pav->item_name}}">
+																		<center>{{$pav->item_name}}</center>
+																	</a>
+																</h2>
+																<p class="price-container">
+																	<center><span><b><em>Private Usage Price: </b>{{$pav->item_price}}php</em></span></center>
+																	<input type="hidden" name="pav_price" value="{{$pav->item_price}}">
+																</p>
+																@endforeach
+
+																<span class="tag1"></span> 
+															</div>
+															@foreach($pavk as $pav)
+															<div class="description">
+																<center><span><b><em>Pavilion Description</em></b></span>
+																	<p>{{$pav->item_description}}. </p></center>
+																	<input type="hidden" name="pav_description" value="{{$pav->item_description}}">
+																	<ul class="list-group">
+
+																	</ul>
 																</div>
 															</div>
 														</div>
-
-													</section>
-													@endforeach
+													</div>
 												</div>
 
+											</section>
+											@endforeach
+										</div>
 
-											</div>
-										</section>
+
 									</div>
+								</section>
+							</div>
 
-									<div id="personal" style="">
-										<section  class="ev" id="customer-info" style="" >
-											<div class="container">
-												<div class="row">
-													<div class="col-md-12 col-lg-12">
-														<!-- form start -->
+							<div class="foods-events">
+								
 
-														<div class="panel panel-default">
-															<div class="panel-heading"><h3>Personal information</h3></div>
-															<div class="panel-body">
-																<!-- personal info start -->
-																<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-																	<label for="fname-info">First name: </label>
-																	<input class="form-control" type="text" name="fname" placeholder="First name" required/>
-																</div>
-																<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-																	<label for="lname-info">Last name: </label>
-																	<input class="form-control" type="text" name="lname" placeholder="Last name" required/>
-																</div>
-																<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-																	<label for="email-info">Email: <span><i>Working email address</i></span></label>
-																	<input class="form-control" type="email" name="email" placeholder="Email Address"required/>
-																</div>
-																<div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">
-																	<label for="address-info">Address</label>
-																	<textarea class="form-control address-info" rows="3" name="address" id="address-info" placeholder="Address"></textarea>
-																</div>
-																<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-																	<label for="contact-info">Contact: </label>
-																	<input class="form-control" type="tel" name="contact" required/>
-																</div>
-																<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-																	<div class="radio radio-yellow">
-																		<label><input type="radio" name="gender" value="Male">Male</label>
-																	</div>
-																	<div class="radio radio-yellow">
-																		<label><input type="radio" name="gender" value="Female">Female</label>
-																	</div>
-																</div>
+
+
+
+
+								<H4>Rooms</H4>
+								<div class="divider"></div>
+								<div class="col col-lg-12">
+									<label for="service-type">Reservation type</label>
+									<select class="form-control"  id="optroom" name="pool_type" onchange="show_rooms()">
+										<option class="" value="" disabled selected="">Room Type</option>
+										@foreach($rooms as $room)
+										<option class="" value="{{$room->type}}">{{$room->type}}</option>
+										@endforeach
+									</select>
+
+
+								</div>
+								<div class="divider"><br/></div>
+								<div class="col col-lg-12">
+									<label for="service-type">Room Quantity:</label>
+									<input class="form-control" type="text" name="no_rooms">
+
+
+								</div>
+								<br>
+								<H4>Pools</H4>
+								<div class="divider"></div>
+
+								<div class="col col-lg-12">
+									<label for="service-type">Reservation type</label>
+									<select class="form-control"  id="optpool" name="pool_type" onchange="show_pools()">
+										<option class="" value="" disabled selected="">Pool Type</option>
+										@foreach($pools as $pool)
+										<option class="" value="{{$pool->pool_type}}">{{$pool->pool_type}}</option>
+										@endforeach
+									</select>
+
+
+								</div>
+
+
+								<div class="form-row">
+									<div class="col col-md-6">
+
+									</div>
+								</div>
+
+
+							</div>
+
+							<div id="personal" style="">
+								<section  class="ev" id="customer-info" style="" >
+									<div class="container">
+										<div class="row">
+											<div class="col-md-12 col-lg-12">
+												<!-- form start -->
+
+												<div class="panel panel-default">
+													<div class="panel-heading"><h3>Personal information</h3></div>
+													<div class="panel-body">
+														<!-- personal info start -->
+														<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
+															<label for="fname-info">First name: </label>
+															<input class="form-control" type="text" name="fname" placeholder="First name" required/>
+														</div>
+														<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
+															<label for="lname-info">Last name: </label>
+															<input class="form-control" type="text" name="lname" placeholder="Last name" required/>
+														</div>
+														<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
+															<label for="email-info">Email: <span><i>Working email address</i></span></label>
+															<input class="form-control" type="email" name="email" placeholder="Email Address"required/>
+														</div>
+														<div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">
+															<label for="address-info">Address</label>
+															<textarea class="form-control address-info" rows="3" name="address" id="address-info" placeholder="Address"></textarea>
+														</div>
+														<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
+															<label for="contact-info">Contact: </label>
+															<input class="form-control" type="tel" name="contact" required/>
+														</div>
+														<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
+															<div class="radio radio-yellow">
+																<label><input type="radio" name="gender" value="Male">Male</label>
+															</div>
+															<div class="radio radio-yellow">
+																<label><input type="radio" name="gender" value="Female">Female</label>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</section>
-									
+									</div>
+								</div>
+							</section>
+							<div>
+								<!-- personal info e -->
+								<div class="col col-lg-6">
+									<a href="/reservation" class="btn btn-style-two center-block pull-left" >Back </a>
+								</div>
+								<div class="col col-lg-6">
+									<button type="submit" class="personal_info btn btn-style-two center-block pull-right ">Next</button>
 								</div>
 							</div>
-						</form>
+
+						</div>
+					</div>
+				</form>
 
 
-						<section class="services-section" id="services-section" style="background-image:url(images/background/leaves-pattern.png);">
-							<div class="auto-container">
-								<div class="row clearfix">
-									<!--Column-->
-									<div class="title-column col-md-12 col-sm-12 col-xs-12">
-										<div class="inner-box text-center">
-											<!--Sec Title-->
-											<div class="sec-title">
-												<h2>Our Service</h2>
-												<h3>Learn more</h3>
-											</div>
+				<section class="services-section" id="services-section" style="background-image:url(images/background/leaves-pattern.png);">
+					<div class="auto-container">
+						<div class="row clearfix">
+							<!--Column-->
+							<div class="title-column col-md-12 col-sm-12 col-xs-12">
+								<div class="inner-box text-center">
+									<!--Sec Title-->
+									<div class="sec-title">
+										<h2>Our Service</h2>
+										<h3>Learn more</h3>
+									</div>
 
-											<div class="text">We offer three different services with a very affordable price</div>
+									<div class="text">We offer three different services with a very affordable price</div>
+								</div>
+							</div>
+
+							<!--Content Column-->
+							<div class="content-column col-md-12 col-sm-12 col-xs-12">
+
+								<div class="row clearfix" ">
+									<!--Service Block-->
+									<div class="service-block col-md-4 col-sm-4 col-xs-12">
+										<div class="inner">
+											<div class="icon-box"><span class="flaticon-calendar-1"></span></div>
+											<h3>Events</h3>
+											<div class="text">Best place for your events needs</div>
+											<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
 										</div>
 									</div>
 
-									<!--Content Column-->
-									<div class="content-column col-md-12 col-sm-12 col-xs-12">
-
-										<div class="row clearfix" ">
-											<!--Service Block-->
-											<div class="service-block col-md-4 col-sm-4 col-xs-12">
-												<div class="inner">
-													<div class="icon-box"><span class="flaticon-calendar-1"></span></div>
-													<h3>Events</h3>
-													<div class="text">Best place for your events needs</div>
-													<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
-												</div>
-											</div>
-
-											<!--Service Block-->
-											<div class="service-block col-md-4 col-sm-4 col-xs-12">
-												<div class="inner">
-													<div class="icon-box"><span class="icon flaticon-bed"></span></div>
-													<h3>Rooms</h3>
-													<div class="text">Affordable room rates</div>
-													<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
-												</div>
-											</div>
-
-											<!--Service Block-->
-											<div class="service-block col-md-4 col-sm-4 col-xs-12">
-												<div class="inner">
-													<div class="icon-box"><span class="icon flaticon-exercise"></span></div>
-													<h3>Pools</h3>
-													<div class="text">Enjoy our clean pool </div>
-													<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
-												</div>
-											</div>  
+									<!--Service Block-->
+									<div class="service-block col-md-4 col-sm-4 col-xs-12">
+										<div class="inner">
+											<div class="icon-box"><span class="icon flaticon-bed"></span></div>
+											<h3>Rooms</h3>
+											<div class="text">Affordable room rates</div>
+											<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
 										</div>
 									</div>
+
+									<!--Service Block-->
+									<div class="service-block col-md-4 col-sm-4 col-xs-12">
+										<div class="inner">
+											<div class="icon-box"><span class="icon flaticon-exercise"></span></div>
+											<h3>Pools</h3>
+											<div class="text">Enjoy our clean pool </div>
+											<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
+										</div>
+									</div>  
 								</div>
 							</div>
-						</section>
+						</div>
+					</div>
+				</section>
 
 
-						<!--End Services Section--> 
+				<!--End Services Section--> 
 
-						<script type="text/javascript">
-							$(document).ready(function() {
+				<script type="text/javascript">
+					$(document).ready(function() {
 
-								$('.personal_info').click(function(){
+						$('.personal_info').click(function(){
 
-									$('#personal').show();
-									$('#pool').hide();
+							$('#personal').show();
+							$('#pool').hide();
 
-								});
-								$('.reserve_info').click(function(){
+						});
+						$('.reserve_info').click(function(){
 
-									$('#personal_info').hide();
-									$('#event_reserve').show();
+							$('#personal_info').hide();
+							$('#event_reserve').show();
 
-								});
+						});
 
-							});
+					});
 
-						</script>
-						@endsection
+				</script>
+				@endsection

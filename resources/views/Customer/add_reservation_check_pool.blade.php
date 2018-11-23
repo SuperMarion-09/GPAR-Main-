@@ -58,21 +58,24 @@
 										<input type="hidden" name="service_type" value="pool_type">
 									</div>
 								</div>
+								<input type="hidden" name="date_in" value="{{$in}}">
+								<input type="hidden" name="date_out" value="{{$out}}">
 
 								<div class="form-group col-md-3 col-sm-6 col-xs-12">
 									<div class="group-inner">
 										<label>Check In</label>
-										<input type="text" name="date_in" id="checkindate" value="{{$in}}" disabled placeholder="Select Date" required>
+										<input type="text"  id="checkindate" value="{{$in}}" disabled placeholder="Select Date" required>
+
 									</div>
 								</div>
 
 								<div class="form-group col-md-3 col-sm-12 col-xs-12">
 									<div class="group-inner">
 										<label>Check Out</label>
-										<input type="text" name="date_out" id="checkoutdate" value="{{$out}}" disabled placeholder="Select Date" required>
+										<input type="text"  id="checkoutdate" value="{{$out}}" disabled placeholder="Select Date" required>
 									</div>
 								</div>
-
+								
 
 							</div>
 						</div>
@@ -107,7 +110,7 @@
 							</div>
 							<div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">
 								<label for="pax-pool">Number of pax: <span><i> Minimum of 25 person</i></span></label>
-								<input type="number" name="pax-pool" class="form-control" id="pax-pool" placeholder="" min="25" required>
+								<input type="number" name="pool_pax" class="form-control" id="pax-pool" placeholder="" min="25" required>
 							</div>
 						</div>
 					</div>

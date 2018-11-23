@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 
 use Hash;
+use Alert;
 
 class StaffController extends Controller
 {
@@ -58,6 +59,7 @@ class StaffController extends Controller
 
 		}
 		$user->save();
+		 Alert::success('The staff is succesfully added','Staff Added')->persistent('Close');
 		return view('admin.add_staff');
     }
 }

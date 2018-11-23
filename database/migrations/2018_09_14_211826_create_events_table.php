@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->string('max_pax');
             $table->integer('add_price');
             $table->integer('pavilion_quantity');
+            $table->string('with_pool');
             $table->timestamps();
             $table->datetime('deleted_at');
         });

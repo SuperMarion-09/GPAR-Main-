@@ -23,6 +23,7 @@ class CreatePoolsTable extends Migration
             $table->string('minimum_pax');
             $table->text('pool_description');
             $table->integer('pool_quantity')->default(1);
+            $table->string('with_event')->default(Null);
             $table->string('image_name');
             $table->string('image_size');
             $table->timestamps();

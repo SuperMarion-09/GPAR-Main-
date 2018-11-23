@@ -1,4 +1,4 @@
-@extends ('Customer.layouts.master')
+@extends('Customer.layouts.master')
 
 @section('content')
 
@@ -7,6 +7,7 @@
     <section class="main-slider" data-start-height="850" data-slide-overlay="yes">
 
     	<div class="tp-banner-container">
+    		@include('sweet::alert')
     		<div class="tp-banner">
     			<ul>
 
@@ -243,73 +244,25 @@
 		</div>
 
 		<div class="four-item-carousel">
-
+@foreach($a_room as $room)
 			<!--Room Box-->
 			<div class="room-box">
 				<div class="inner-box">
 					<div class="image-box">
-						<a href="single-room.html"><img src="css/images/rooms/standard1.jpg" alt="" /></a>
+						<img src="{{asset('storage/upload/room/'.$room->image_name)}}" alt="" />
 					</div>
 					<!--Lower Content-->
 					<div class="lower-content">
-						<h3><a href="single-room.html">Standard Room</a></h3>
-						<p>short description</p>
-						<div class="price clearfix">2500 <a href="reservation.html">Reserve now</a></div>
+						<h3>{{$room->type}} Room</h3>
+						<p>{{$room->room_description}}</p>
+						<div class="price clearfix">{{$room->room_price}} <a href="/reservation">Reserve now</a></div>
 					</div>
 
 				</div>
 			</div>
+			@endforeach
 
-			<!--Room Box-->
-			<div class="room-box">
-				<div class="inner-box">
-					<div class="image-box">
-						<a href="reservation.html"><img src="css/images/rooms/family1.jpg" alt="" /></a>
-					</div>
-					<!--Lower Content-->
-					<div class="lower-content">
-						<!--Rating-->
-						<h3><a href="reservation.html">Family Room</a></h3>
-						<p>short description</p>
-						<div class="price clearfix">2500 <a href="reservation.html">Reserve now</a></div>
-					</div>
-
-				</div>
-			</div>
-
-			<!--Room Box-->
-			<div class="room-box">
-				<div class="inner-box">
-					<div class="image-box">
-						<a href="reservation.html"><img src="css/images/rooms/chester.jpg" alt="" /></a>
-					</div>
-					<!--Lower Content-->
-					<div class="lower-content">
-						<!--Rating-->
-
-						<h3><a href="single-room.html">Chester's Room</a></h3>
-						<p>short description</p>
-						<div class="price clearfix">2500 <a href="single-room.html">Reserve now</a></div>
-					</div>
-
-				</div>
-			</div>
-			<div class="room-box">
-				<div class="inner-box">
-					<div class="image-box">
-						<a href="single-room.html"><img src="css/images/rooms/justine.jpg" alt="" /></a>
-					</div>
-					<!--Lower Content-->
-					<div class="lower-content">
-						<!--Rating-->
-
-						<h3><a href="single-room.html">Justine's Room</a></h3>
-						<p>short description</p>
-						<div class="price clearfix">2500 <a href="single-room.html">Reserve now</a></div>
-					</div>
-
-				</div>
-			</div>
+			
 
 			<!--Room Box-->
 		</div>
@@ -330,7 +283,7 @@
 		</div>
 
 		<div class="row clearfix">
-
+@foreach($gallery as $pictures)
 			<!--Post Style One / Style Two -->
 			<div class="post-style-one style-two col-md-4 col-sm-6 col-xs-12">
 				<div class="inner-box">
@@ -338,66 +291,26 @@
 					<div class="inner-column">
 						<!--Image Box-->
 						<figure class="image-box">
-							<img src="css/images/events/pic2.jpg" alt="" />
+							<img src="{{asset('storage/upload/gallery/covers/'.$pictures->album_name.'/'.$pictures->cover_image)}}" alt="" />
 						</figure>
 					</div>
 
 					<div class="inner-column">
 						<!--Content Box-->
 						<div class="content-box">
-							<div class="title"><span class="date">28 <span>jul</span ><br><span>2017</span></span>Debut</div>
+							<div class="title"><span class="date">{{ $pictures->album_name}}</span></div>
 							<br>
-							<div class="text">There are many variations passag lorem Ipsum available but themajority have in suffered alteration finally.</div>
-							<a href="#id" class="theme-btn btn-style-two">view photos</a>
+							<div class="text">{{ $pictures->description}}.</div>
+							<a href="/gallery/album/{{$pictures->id}}/view_images" class="theme-btn btn-style-two">view photos</a>
 						</div>
 					</div>
 
 				</div>
 			</div>
+			@endforeach
 
 			<!--Post Style One / Style Two -->
-			<div class="post-style-one style-two col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="inner-column">
-						<!--Image Box-->
-						<figure class="image-box">
-							<img src="css/images/events/pic1.jpg" alt="" />
-						</figure>
-					</div>
-
-					<div class="inner-column">
-						<!--Content Box-->
-						<div class="content-box">
-							<div class="title"><span class="date">28 <span>jul</span ><br><span>2017</span></span>Mr and Ms Body exceptional </div>
-							<div class="text">There are many variations passag lorem Ipsum available but themajority have in suffered alteration finally.</div>
-							<a href="#id" class="theme-btn btn-style-two">view photos</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
-
-			<!--Post Style One / Style Two -->
-			<div class="post-style-one style-two col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="inner-column">
-						<!--Image Box-->
-						<figure class="image-box">
-							<img src="css/images/events/pic4.jpg" alt="" />
-						</figure>
-					</div>
-
-					<div class="inner-column">
-						<!--Content Box-->
-						<div class="content-box">
-							<div class="title"><span class="date">28 <span>jul</span><br><span>2017</span></span>Brent and Charmaine Prenup</div>
-							<div class="text">There are many variations passag lorem Ipsum available but themajority have in suffered alteration finally.</div>
-							<a href="#id" class="theme-btn btn-style-two">view photos</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
+			
 
 		</div>
 	</div>

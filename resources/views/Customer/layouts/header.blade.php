@@ -1,4 +1,5 @@
 <!-- Main Header-->
+@foreach($settings as $setting)
         <header class="main-header">
 
             <!-- Main Box -->
@@ -7,7 +8,7 @@
                    <div class="outer-container clearfix">
                     <!--Logo Box-->
                     <div class="logo-box">
-                        <H2>Grand<span style="color:#3aff65;">Pavilion</H2>
+                        <H2>{{$setting->resorts_fname}}<span style="color:#3aff65;">{{$setting->resorts_lname}}</H2>
                         </div>
 
                         <!--Nav Outer-->
@@ -37,7 +38,7 @@
                                     </a>
                                 </li>
                                 <li><a href="/gallery">Gallery</a></li>
-                                <li><a href="/contact-us">Contact us</a></li>
+                                <li><a href="/contact_us">Contact us</a></li>
                                 <li><a href="/about-us">About us</a></li>
                             </ul>
                         </div>
@@ -110,4 +111,5 @@
         
     </div><!-- / Hidden Bar Wrapper -->
 </section>
+@endforeach
 <!--/ Hidden Bar-->

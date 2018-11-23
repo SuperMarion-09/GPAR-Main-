@@ -8,7 +8,7 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta name="description" content="Responsive Admin Template" />
     <meta name="author" content="SmartUniversity" />
-    <title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+    <title>The Grand Pavilion and Resort</title>
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
 	<!-- icons -->
@@ -50,11 +50,7 @@
 							Login
 						</button>
 					</div>
-					<div class="text-center p-t-90">
-						<a class="txt1" href="#">
-							Forgot Password?
-						</a>
-					</div>
+					
 				</form>
 			</div>
 		</div>

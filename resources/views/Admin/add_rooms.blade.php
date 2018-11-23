@@ -6,6 +6,7 @@
 	<form method="post" action="/admin/room/add_rooms" enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<div class="page-content">
+			@include('sweet::alert')
 			<div class="page-bar">
 				<div class="page-title-breadcrumb">
 					<div class=" pull-left">
@@ -74,7 +75,7 @@
 				</div>
 				<div class="col-lg-6 p-t-20"> 
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height txt-full-width">
-						<input class="mdl-textfield__input" type="text" id="list2" value=""  tabIndex="-1" name="roomQuantity">
+						<input class="mdl-textfield__input" type="text" id="list2" name="roomQuantity">
 						<!-- <label for="list2" class="pull-right margin-0">
 							<i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
 						</label>-->

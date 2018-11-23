@@ -17,147 +17,38 @@
 <section class="rate-section">
 	<div class="auto-container">
 		<div class="row clearfix">
-
+@foreach($a_room as $room)
 			<div class="rate-block col-md-6 col-sm-6 col-xs-12">
 				<div class="inner-box">
 					<!--Image Box-->
 					<div class="image-box">
-						<a href="single-room.html"><img src="css/images/rooms/family1.jpg" alt="" /></a>
+						<a href="#"><img src="{{asset('storage/upload/room/'.$room->image_name)}}" alt="" /></a>
 					</div>
 					<!--Lower Content-->
 					<div class="lower-content">
 
 						<div class="upper-box">
 							<div class="title-box">
-								<h3><a href="single-room.html">Standard Room</a></h3>
+								<h3>{{$room->type}} Room</h3>
 
 							</div>
 
-							<div class="text">Lorem Ipsum is simply dumm text printing and typesetting crasino qisno has been the industry disu great room work.</div>
+							<div class="text">{{$room->room_description}}</div>
 							<!--List Style One-->
-							<ul class="list-style-one">
-								<li>1 King Bed</li>
-								<li>Free Wi-Fi</li>
-								<li>Good for 8 persons</li>
-								<li>Free morning juice</li>
-							</ul>
+							
 						</div>
 
 						<!--Lower Box-->
 						<div class="lower-box clearfix">
-							<div class="price-day pull-left">Start from <span>2300</span> / Day</div>
-							<a href="single-room.html" class="book-now pull-right">
+							<div class="price-day pull-left">Start from <span>{{$room->room_price}}</span> / Day</div>
+							<a href="/reservation" class="book-now pull-right">
 							Reserve now!</a>
 						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="rate-block col-md-6 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<!--Image Box-->
-					<div class="image-box">
-						<a href="single-room.html"><img src="css/images/rooms/standard1.jpg" alt="" /></a>
-					</div>
-					<!--Lower Content-->
-					<div class="lower-content">
-
-						<div class="upper-box">
-							<div class="title-box">
-								<h3><a href="single-room.html">Family Room</a></h3>
-
-							</div>
-
-							<div class="text">Lorem Ipsum is simply dumm text printing and typesetting crasino qisno has been the industry disu great room work.</div>
-							<!--List Style One-->
-							<ul class="list-style-one">
-								<li>2 King Bed</li>
-								<li>Free Wi-Fi</li>
-								<li>Good for 8 persons</li>
-								<li>Free morning juice</li>
-							</ul>
-						</div>
-
-						<!--Lower Box-->
-						<div class="lower-box clearfix">
-							<div class="price-day pull-left">Start from <span>3000</span> / Day</div>
-							<a href="single-room.html" class="book-now pull-right">
-							Reserve now!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="rate-block col-md-6 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<!--Image Box-->
-					<div class="image-box">
-						<a href="single-room.html"><img src="css/images/rooms/chester.jpg" alt="" /></a>
-					</div>
-					<!--Lower Content-->
-					<div class="lower-content">
-
-						<div class="upper-box">
-							<div class="title-box">
-								<h3><a href="single-room.html">Chester's Room</a></h3>
-
-							</div>
-
-							<div class="text">Lorem Ipsum is simply dumm text printing and typesetting crasino qisno has been the industry disu great room work.</div>
-							<!--List Style One-->
-							<ul class="list-style-one">
-								<li>1 Kid's Bed</li>
-								<li>Free Wi-Fi</li>
-								<li>Good for 2 children</li>
-								<li>Free morning juice</li>
-							</ul>
-						</div>
-
-						<!--Lower Box-->
-						<div class="lower-box clearfix">
-							<div class="price-day pull-left">Start from <span>1000</span> / Day</div>
-							<a href="single-room.html" class="book-now pull-right">
-							Reserve now!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="rate-block col-md-6 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<!--Image Box-->
-					<div class="image-box">
-						<a href="single-room.html"><img src="css/images/rooms/justine.jpg" alt="" /></a>
-					</div>
-					<!--Lower Content-->
-					<div class="lower-content">
-
-						<div class="upper-box">
-							<div class="title-box">
-								<h3><a href="single-room.html">Justine's Room</a></h3>
-
-							</div>
-
-							<div class="text">Lorem Ipsum is simply dumm text printing and typesetting crasino qisno has been the industry disu great room work.</div>
-							<!--List Style One-->
-							<ul class="list-style-one">
-								<li>1 Kid's Bed</li>
-								<li>Free Wi-Fi</li>
-								<li>Good for 8 persons</li>
-								<li>Free morning juice</li>
-							</ul>
-						</div>
-
-						<!--Lower Box-->
-						<div class="lower-box clearfix">
-							<div class="price-day pull-left">Start from <span>2300</span> / Day</div>
-							<a href="single-room.html" class="book-now pull-right">
-							Reserve now!</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
+@endforeach
+			
 		</div>
 	</div>
 </section>

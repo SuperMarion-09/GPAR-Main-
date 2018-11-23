@@ -23,72 +23,20 @@
 		</div>
 		
 		<div class="row clearfix">
-			
+			@foreach($gallery as $pictures)
 			<!--Gallery Item Three-->
 			<div class="gallery-item-three col-lg-4 col-md-4 col-sm-6 col-xs-12">
 				<div class="inner-box">
 					<div class="image-box">
-						<figure class="image"><img src="css/images/gallery/22.jpg" alt=""></figure>
+						<figure class="image"><img src="{{asset('storage/upload/gallery/covers/'.$pictures->album_name.'/'.$pictures->cover_image)}}" alt=""></figure>
 						<!--Overlay Box-->
-						<a href="css/images/gallery/22.jpg" data-fancybWox-group="gallery" class="overlay-box lightbox-image"><span class=""><h3>POOLS</h3></span></a>
+						<a href="/gallery/album/{{$pictures->id}}/view_images" data-fancybWox-group="gallery" class="overlay-box lightbox-image"><span class=""><h3>{{$pictures->album_name}}</h3></span></a>
 					</div>
 				</div>
 			</div>
+			@endforeach
 			
-			<!--Gallery Item Three-->
-			<div class="gallery-item-three col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="image-box">
-						<figure class="image"><img src="css/images/gallery/23.jpg" alt=""></figure>
-						<!--Overlay Box-->
-						<a href="css/images/gallery/23.jpg" data-fancybox-group="gallery" class="overlay-box lightbox-image"><span class=""></span></a>
-					</div>
-				</div>
-			</div>
 			
-			<!--Gallery Item Three-->
-			<div class="gallery-item-three col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="image-box">
-						<figure class="image"><img src="css/images/gallery/24.jpg" alt=""></figure>
-						<!--Overlay Box-->
-						<a href="css/images/gallery/24.jpg" data-fancybox-group="gallery" class="overlay-box lightbox-image"><span class=""></span></a>
-					</div>
-				</div>
-			</div>
-			
-			<!--Gallery Item Three-->
-			<div class="gallery-item-three col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="image-box">
-						<figure class="image"><img src="css/images/gallery/25.jpg" alt=""></figure>
-						<!--Overlay Box-->
-						<a href="css/images/gallery/25.jpg" data-fancybox-group="gallery" class="overlay-box lightbox-image"><span class=""></span></a>
-					</div>
-				</div>
-			</div>
-			
-			<!--Gallery Item Three-->
-			<div class="gallery-item-three col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="image-box">
-						<figure class="image"><img src="css/images/gallery/26.jpg" alt=""></figure>
-						<!--Overlay Box-->
-						<a href="css/images/gallery/26.jpg" data-fancybox-group="gallery" class="overlay-box lightbox-image"><span class=""></span></a>
-					</div>
-				</div>
-			</div>
-			
-			<!--Gallery Item Three-->
-			<div class="gallery-item-three col-lg-4 col-md-4 col-sm-6 col-xs-12">
-				<div class="inner-box">
-					<div class="image-box">
-						<figure class="image"><img src="css/images/gallery/27.jpg" alt=""></figure>
-						<!--Overlay Box-->
-						<a href="css/images/gallery/27.jpg" data-fancybox-group="gallery" class="overlay-box lightbox-image"><span class=""></span></a>
-					</div>
-				</div>
-			</div>
 			
 		</div>
 		

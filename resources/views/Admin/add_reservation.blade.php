@@ -5,6 +5,7 @@
 
 <!-- start page content -->
 <div class="page-content-wrapper">
+	@include('sweet::alert')
 	<div class="page-content">
 		@if(session()->has('notif'))
 		
@@ -16,6 +17,17 @@
 		</div></center>
 		
 		@endif
+		@if(count($errors))
+				<div class="col col-md-8">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+				@endif
 		<div class="page-bar">
 			<div class="page-title-breadcrumb">
 				<div class=" pull-left">
@@ -79,7 +91,7 @@
 							</div>
 							<div class="col col-md-6" id="room_type" style="display: none">
 								<small id="label" class="text-muted">Room type</small>
-								<select class="form-control" name="room_name[]" id="optrooms" onchange="show_rooms(this.value)" multiple arialabelledby="label">
+								<select class="form-control" name="room_name" id="optrooms" onchange="show_rooms(this.value)" arialabelledby="label">
 									<option class="" disabled selected="">Type of rooms</option>
 									@foreach($rooms as $room)
 									<option value="{{$room->type}}">{{$room->type}}</option>

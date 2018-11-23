@@ -17,6 +17,17 @@
 			</div></center>
 
 			@endif
+			@if(count($errors))
+			<div class="col col-md-12">
+				<div class="alert alert-danger">
+					<ul>
+						@foreach($errors->all() as $error)
+						<li>{{$error}}</li>
+						@endforeach
+					</ul>
+				</div>
+			</div>
+			@endif
 
 			<div class="page-bar">
 				<div class="page-title-breadcrumb">
@@ -48,17 +59,18 @@
 							
 						</div>
 						
-
+							<input type="hidden" name="date_in" value="{{$in}}">
+							<input type="hidden" name="date_out" value="{{$out}}">
 
 
 						<div class="col col-lg-12">
 							<label>Check In</label>
-							<input class="form-control date_1" type="date" name="date_in"  id="date_in"  value="{{$in}}" placeholder="Check-in Date" readonly  required>
+							<input class="form-control date_1" type="date" id="date_in"  value="{{$in}}" placeholder="Check-in Date" readonly  required>
 
 						</div>
 						<div class="col col-lg-12">
 							<label>Check Out</label>
-							<input class="form-control date_2" type="date" name="date_out" id="date_out" value="{{$out}}" placeholder="Check-out Date" readonly required>
+							<input class="form-control date_2" type="date"  id="date_out" value="{{$out}}" placeholder="Check-out Date" readonly required>
 
 						</div>
 					</div>  
@@ -193,19 +205,129 @@
 							<div class="col-sm-12">
 								<div class="card-box">
 									<div class="card-head">
-										<header>Personal Reservation</header>
+										<header>Event Reservation</header>
 									</div>
 									<div class="card-body ">
 
 										<nav aria-label="breadcrumb">
 											<ol class="navhelp breadcrumb">
-												<li class="breadcrumb-item ">Reservation Information</li>
-												<li class="breadcrumb-item active" aria-current="page">Personal Information</li>
+												<li class="breadcrumb-item active">Reservation Information</li>
+												<li class="breadcrumb-item " aria-current="page">Personal Information</li>
 												<li class="breadcrumb-item" >Summary</li>
 												<li class="breadcrumb-item">Payment</li>
 											</ol>
 										</nav>
-										<h3>Services and Food</h3>
+										<center><h3>Services and Food</h3></center>
+										<hr>
+										<div class="divider"> </div>
+										@foreach($events as $event)
+										<center><div><strong>Note:</strong><p>Our foods per dish are good for {{$event->max_pax}} person only</p></div></center>
+										@break
+										@endforeach
+										<div class="form-row">
+										<div class="col-md-12">          
+											<center><div class="col col-md-4">
+												<label>Number of additional pax:@foreach($events as $event)
+												<em><small><br>Php {{$event->add_price}} per head</small></em>
+												@break
+												@endforeach</label><input class="form-control" type="text" name="add_pax"><br>
+												
+											</div></center>
+										</div>
+										</div>
+										<center><H3>INCLUSIONS</H3></center>
+										<div class="divider"></div>
+										<div class="row">
+											<!-- food list start -->
+											<div class="col col-md-12 foods-events">
+												<center><H4>Foods</H4></center>
+												<div class="divider"></div>
+												<table>
+													@foreach($events as $event)
+													<td>
+														@if($event->category=='foods')
+														<div class=" col-md-6 nopad text-center">
+
+															<label class="image-checkbox">
+																<img class="" src="{{asset('storage/upload/items/foods/'.$event->image_name)}}" height="150" width="150" />
+																<input type="checkbox" name="foods[]" value="{{$event->item_name}}" />
+																<i class="glyphicon glyphicon-ok hidden"></i>
+															</label>
+															<div class="desc"><b>{{$event->item_name}}</b></div>
+														</div>
+
+														@endif
+														@endforeach
+													</td>
+												</table>
+												<center><H4>Services</H4></center>
+												<div class="divider"></div>
+												<table>
+													@foreach($events as $event)
+													<td>
+														@if($event->category=='services')
+
+														<div class=" col-md-6 nopad text-center">
+															<label class="image-checkbox">
+																<img class="" src="{{asset('storage/upload/items/services/'.$event->image_name)}}" height="150" width="150" />
+																<input type="checkbox" name="services[]" value="{{$event->item_name}}" />
+																<i class="glyphicon glyphicon-ok hidden"></i>
+
+															</label>
+															<div class="desc"><b>{{$event->item_name}}</b></div>
+														</div>
+														@endif
+													</td>
+													@endforeach
+												</table>
+												
+												<div class="form-row">          
+													<div class="col col-md-12">
+														&nbsp
+														<a class="btn btn-info btn-lg back_info">Back</a>
+														<a class="btn btn-info btn-lg  pool_room_next" >Next</a>
+													</div>
+												</div>
+												<div class="form-row">
+													<div class="col col-md-6">
+
+													</div>
+												</div>
+
+
+											</div>
+										</div>
+
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div id="pool_room" style="display: none;">
+
+
+						<div class="row" id="eventres" style="display: ">
+							<div class="col-sm-12">
+								<div class="card-box">
+									<div class="card-head">
+										<header>Event Reservation</header>
+									</div>
+									<div class="card-body ">
+
+										<nav aria-label="breadcrumb">
+											<ol class="navhelp breadcrumb">
+												<li class="breadcrumb-item active">Reservation Information</li>
+												<li class="breadcrumb-item " aria-current="page">Personal Information</li>
+												<li class="breadcrumb-item" >Summary</li>
+												<li class="breadcrumb-item">Payment</li>
+											</ol>
+										</nav>
+										<h3>Rooms and Pools</h3>
 										<hr>
 										<div class="divider"> </div>
 										<H3>INCLUSIONS</H3>
@@ -213,42 +335,59 @@
 										<div class="row">
 											<!-- food list start -->
 											<div class="foods-events">
-												<H4>Foods</H4>
+												<H4>Pools</H4>
 												<div class="divider"></div>
-												@foreach($events as $event)
-												@if($event->category=='foods')
-												<div class=" col-md-6 nopad text-center">
 												
-													<label class="image-checkbox">
-														<img class="" src="{{asset('storage/upload/items/foods/'.$event->image_name)}}" height="150" width="150" />
-														<input type="checkbox" name="foods[]" value="{{$event->item_name}}" />
-														<i class="glyphicon glyphicon-ok hidden"></i>
-													</label>
-													<div class="desc"><h5>{{$event->item_name}}</h5></div>
+
+												<div class="col col-lg-12">
+													<label for="service-type">Reservation type</label>
+													<select class="form-control"  id="optpool" name="pool_type" onchange="show_pools()">
+														<option class="" value="" disabled selected="">Pool Type</option>
+														@foreach($pools as $pool)
+														<option class="" value="{{$pool->pool_type}}">{{$pool->pool_type}}</option>
+														@endforeach
+													</select>
+
+
 												</div>
 
-												@endif
-												@endforeach
-												<H4>Services</H4>
+
+												
+												<H4>Rooms</H4>
 												<div class="divider"></div>
-												@foreach($events as $event)
-												@if($event->category=='services')
-												<div class=" col-md-6 nopad text-center">
-													<label class="image-checkbox">
-														<img class="" src="{{asset('storage/upload/items/services/'.$event->image_name)}}" height="150" width="150" />
-														<input type="checkbox" name="services[]" value="{{$event->item_name}}" />
-														<i class="glyphicon glyphicon-ok hidden"></i>
-														
-													</label>
-													<div class="desc"><h5>{{$event->item_name}}</h5></div>
-												</div>
-												@endif
-												@endforeach
+												<div class="col col-lg-12">
+													<label for="service-type">Reservation type</label>
+													<select class="form-control"  id="optroom" name="pool_type" onchange="show_rooms()">
+														<option class="" value="" disabled selected="">Room Type</option>
+														@foreach($rooms as $room)
+														<option class="" value="{{$room->room_type}}">{{$room->room_type}}</option>
+														@endforeach
+													</select>
 
+
+												</div>
+												<div class="divider"><br/></div>
+												<div class="col col-lg-12">
+													<label for="service-type">Room Quantity:</label>
+													<input type="text" name="no_rooms">
+
+
+												</div>
+												@foreach($pools as $pool)
+												<div class="col-md-5 col-sm-12 col-xs-12" id="{{$pool->pool_type}}" style="display: none;">
+													<div class="product-image" ">
+														@if($pool->image_name == "")
+														<p> No Picture</p>
+														@elseif($pool->image_name == $pool->image_name) 
+														<img src="{{asset('storage/upload/pool/'.$pool->image_name)}}" alt="194x228" class="img-responsive"> 
+														@endif
+													</div>
+												</div>
+												@endforeach
 												<div class="form-row">          
 													<div class="col col-md-6">
 														&nbsp
-														<a class="btn btn-info btn-lg back_info">Back</a>
+														<a class="btn btn-info btn-lg reserve_info">Back</a>
 														<a class="btn btn-info btn-lg  info_next" >Next</a>
 													</div>
 												</div>
@@ -294,7 +433,7 @@
 							<div class="col-sm-12">
 								<div class="card-box">
 									<div class="card-head">
-										<header>Personal Reservation</header>
+										<header>Event Reservation</header>
 									</div>
 									<div class="card-body ">
 
@@ -358,7 +497,7 @@
 												<button type="submit" class="btn btn-info btn-lg pull-right" >Submit</button>
 											</div>
 											<div class="col col-md-12">
-												<a class="btn btn-info btn-lg pull-left reserve_info">Back</a>
+												<a class="btn btn-info btn-lg pull-left roompool_info">Back</a>
 											</div>
 
 
@@ -390,19 +529,37 @@
 					$('#services_foods_reserve').show();
 					$('#event_reserve').hide();
 					$('#personal_info').hide();
+					$('#pool_room').hide();
+
+				});
+				$('.pool_room_next').click(function(){
+
+					$('#services_foods_reserve').hide();
+					$('#event_reserve').hide();
+					$('#pool_room').show();
 
 				});
 				$('.info_next').click(function(){
 
 					$('#services_foods_reserve').hide();
 					$('#event_reserve').hide();
+					$('#pool_room').hide();
 					$('#personal_info').show();
+
+				});
+				$('.roompool_info').click(function(){
+
+					$('#personal_info').hide();
+					$('#event_reserve').hide();
+					$('#pool_room').show();
+					$('#services_foods_reserve').hide();
 
 				});
 				$('.reserve_info').click(function(){
 
 					$('#personal_info').hide();
 					$('#event_reserve').hide();
+					$('#pool_room').hide();
 					$('#services_foods_reserve').show();
 
 				});
@@ -410,15 +567,52 @@
 
 					$('#personal_info').hide();
 					$('#event_reserve').show();
+					$('#pool_room').hide();
 					$('#services_foods_reserve').hide();
 
 				});
 
 			});
 
+			function show_pools()
+			{
+				
+				$('#optpool').on('change', function() {
+  					@foreach($pools as $pool)
+				  if(this.value == '{{$pool->pool_type}}') {
+				  	$('#{{$pool->poo_type}}').show();
+				  	
+				  } 
+				  @endforeach
+				});
+				
+
+				
+			}
+			function show_rooms()
+			{
+				@foreach($rooms as $rooom)
+				var selected_room = document.getElementById("optroom");
+
+
+				if (selected_room == '{{$room->type}}') 
+				{
+					$('#{{$room->type}}').show();
+					
+
+				}
+				if (selected_room != '{{$room->type}}') 
+				{
+					$('#{{$room->type}}').hide();
+
+				}
+
+				@endforeach
+			}
+
 
 		</script>
 
 
 
-@endsection
+		@endsection

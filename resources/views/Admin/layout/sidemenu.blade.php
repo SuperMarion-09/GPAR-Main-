@@ -11,8 +11,8 @@
                                             <div class="user-panel">
                                                 <div class="row">
                                                     <div class="sidebar-userpic">
+                                                        <img src="{{asset('storage/upload/staff/'.Auth::user()->image_name )}}" class="img-responsive" alt=""> </div>
 
-                                                        <img src="{{asset('storage/upload/staff/'.Auth::user()->image_name)}}" class="img-responsive" alt=""> </div>
                                                         
                                                     </div>
                                                     <div class="profile-usertitle">
@@ -24,7 +24,7 @@
                                                         <a class="tooltips" href="/admin/settings/profile" data-placement="top" data-original-title="Profile">
                                                             <i class="material-icons">settings</i>
                                                         </a> &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a class="tooltips" href="" data-placement="top" data-original-title="Logout">
+                                                        <a class="tooltips" href="/admin/logout" data-placement="top" data-original-title="Logout">
                                                             <i class="material-icons">input</i>
                                                         </a>
                                                     </div>
@@ -105,8 +105,15 @@
                                                 </a>
                                                 <ul class="sub-menu">
                                                     <li class="nav-item">
-                                                        <a href="/admin/reservation/view_reservation" class="nav-link active">
-                                                            <span class="title">View reservation</span>
+                                                        <a href="/admin/reservation/view_accepted_reservation" class="nav-link active">
+                                                            <span class="title"> Accepted reservation</span>
+                                                        </a>
+                                                        
+                                                    </li>
+                                                     <li class="nav-item">
+                                                        
+                                                        <a href="/admin/reservation/view_pending_reservation" class="nav-link active">
+                                                            <span class="title"> Pending reservation</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
@@ -169,10 +176,7 @@
                                                         <a href="/admin/others/logs" class="nav-link "> <span class="title">Logs</span>
                                                         </a>
                                                     </li>
-                                                    <li class="nav-item">
-                                                        <a href="/admin/others/feedbacks" class="nav-link "> <span class="title">Feedbacks
-                                                        </a>
-                                                    </li>
+                                                
                                                     <li class="nav-item">
                                                         <a href="/admin/others/resort_setting" class="nav-link ">
                                                             <span class="title">

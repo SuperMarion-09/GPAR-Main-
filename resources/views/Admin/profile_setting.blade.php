@@ -6,6 +6,7 @@
 	<div class="page-content">
 		<div class="container">
 			<div class="card-box">
+				@include('sweet::alert')
 				<div class="card-head">
 					<header>Profile Information</header>
 				</div>

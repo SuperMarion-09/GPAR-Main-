@@ -36,7 +36,27 @@
 						<div class="arrow-box"><span class="icon fa fa-angle-right"></span></div>
 					</div>
 				</div>
+				@if(count($errors))
+				<div class="col col-md-12">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+				@endif
+				@if(session()->has('notif'))
 
+				<center><div class="col col-md-8 ">
+					<div class="alert alert-info ">
+						<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong>Notification</strong><p><center>{{session()->get('notif')}}</center></p>
+					</div>
+				</div></center>
+
+				@endif
 				<!--Form Column-->
 
 				<div class="form-column col-lg-10 col-md-12 col-sm-12 col-xs-12">
@@ -62,17 +82,19 @@
 									<div class="form-group col-md-3 col-sm-6 col-xs-12">
 										<div class="group-inner">
 											<label>Check In</label>
-											<input type="text" name="date_in" id="checkindate" value="{{$in}}" disabled placeholder="Select Date" required>
+											<input type="text" name="" id="checkindate" value="{{$in}}" disabled placeholder="Select Date" required>
+											<input type="hidden" name="date_in" value="{{$in}}">
 										</div>
 									</div>
 
 									<div class="form-group col-md-3 col-sm-12 col-xs-12">
 										<div class="group-inner">
 											<label>Check Out</label>
-											<input type="text" name="date_out" id="checkoutdate" value="{{$out}}" disabled placeholder="Select Date" required>
+											<input type="text" name="" id="checkoutdate" value="{{$out}}" disabled placeholder="Select Date" required>
+											<input type="hidden" name="date_out" value="{{$out}}">
 										</div>
 									</div>
-
+										
 
 								</div>
 							</div>
@@ -94,7 +116,7 @@
 						<!-- form start -->
 
 						<div class="panel panel-default">
-							<div class="panel-heading"><h3>Pool Reservation</h3></div>
+							<div class="panel-heading"><h3>Room Reservation</h3></div>
 							<div class="panel-body">
 								<!-- personal info start -->
 								<div class="col col-md-6">
@@ -134,12 +156,13 @@
 													</a>
 												</h2>
 												<p class="price-container">
-													<center><span><b><em>Private Usage Price: </b>{{$room->room_price}}php</em></span></center>
+													<center><span><b><em>Private Usage Price: </b>php</em></span></center>
 													<input type="hidden" name="room_price" value="{{$room->room_price}}">
 												</p>
 												@endforeach
 												<p class="available-rooms">
 													<center><span><b><em>Rooms Availability: {{$temp_room_quantity}}</b></em></span><br>
+														<input type="hidden" name="temp_room_quantity" value="{{$temp_room_quantity}}">
 													</center>
 												</p>
 												<span class="tag1"></span> 

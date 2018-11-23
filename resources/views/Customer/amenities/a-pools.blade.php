@@ -24,7 +24,7 @@
 					<h2>Our Pools</h2> 
 					<div class="text">
 						<p>There’s lot of pools you can find in the Philippines and one of them is the pool that The Grand Pavilion and Resort offers. The Grand Pavilion and Resort offers a private pool that you can relax and enjoy with. Together with your family and friends, you can savor the moment of happiness in the pool at a low cost. In just a click of your mouse you can own the pool in one day. Bring your friends and family and enjoy the moment with them in our pool.</p>
-						<span class="pool-rates" ><h3>150 per head</h3><em><i>minimum of 25 persons</i></em></span>
+						
 					</div>
 				</div>
 			</div>

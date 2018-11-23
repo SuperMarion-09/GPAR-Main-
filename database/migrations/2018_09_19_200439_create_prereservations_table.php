@@ -15,6 +15,7 @@ class CreatePrereservationsTable extends Migration
     {
         Schema::create('prereservations', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('reservation_type');
             $table->string('reservation_in');
             $table->string('reservation_out');
             $table->string('time_in');

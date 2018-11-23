@@ -23,15 +23,17 @@
 						<header>Add image</header>
 					</div>
 					<div class="card-body " id="">
-						<form name="" action="" method="">
+						<form action="/admin/gallery/album/{{$album_name}}/add_images" method="POST" enctype="multipart/form-data">
+							{{csrf_field()}}
 							<div class="row">
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
+										<input type="hidden" name="album_name" value="{{$album_name}}">
 										<label>Choose images<small>  (*recommended image size 400 x 300 jpg only)</small></label>
-										<input type="file" class="form-control" placeholder="Album name" multiple>
+										<input type="file" class="form-control" placeholder="Album name" name="images[]" multiple>
 									</div>
-									<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 m-l-20 btn-pink">Submit</button>
-									<button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</button>
+									<button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 m-r-20 m-l-20 btn-pink">Submit</button>
+									<a type="button" href="/admin/gallery/album/{{$album_name}}/view_images" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect m-b-10 btn-default">Cancel</a>
 								</div>
 							</div>
 						</form>
@@ -42,9 +44,7 @@
 		</div>
 		<!-- back button-->
 		<br>
-		<div class="row">
-			<button type="button" class="btn btn-default" onclick="goBack()">Go back</button>
-		</div>
+		
 		<!--end back button-->
 	</div>
 </div>

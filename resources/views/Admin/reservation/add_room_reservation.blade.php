@@ -79,6 +79,7 @@
 															</p>
 															<p class="available-rooms">
 																<span>Available rooms: {{$room->room_quantity}}</span>
+																
 															</p>
 															<span class="tag1"></span> 
 														</div>

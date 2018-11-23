@@ -28,6 +28,8 @@
 <!-- favicon -->
 <link rel="stylesheet" type="text/css" href="/css/assets/plugins/custom/add.css">
 <link rel="shortcut icon" href="/css/assets/img/logo.ico" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 
 

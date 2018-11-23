@@ -10,6 +10,9 @@
     <link href="/css/css/style.css" rel="stylesheet">
     <link href="/css/css/style2.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/js/plugins/material-datetimepicker/bootstrap-material-datetimepicker.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    
     <!--<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"> -->
     <!--<link rel="icon" href="images/favicon.ico" type="image/x-icon"> -->
     <!-- Responsive -->
@@ -71,7 +74,7 @@
 
     <!--Scroll to top-->
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-long-arrow-up"></span></div>
-
+  
     <script src="/js/js/jquery.js"></script> 
     <script src="/js/code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="/js/js/bootstrap.min.js"></script>

@@ -110,18 +110,45 @@
 													</tr>
 													<tr>
 														<td>
-															@foreach($f_item as $items)
-															<li>{{$items}} &nbsp;&nbsp;<span></span></li>
-															<input type="hidden" name="foods[]" value="{{$items}}">
+															@foreach($foods as $food)
+															<li>{{$food}} &nbsp;&nbsp;<span></span></li>
+															<input type="hidden" name="foods[]" value="{{$food}}">
 															@endforeach
 														</td>
 														<td>
-															@foreach($s_item as $item)
+															@foreach($items as $item)
 															<li>{{$item}} &nbsp;&nbsp;<span></span></li>
 															<input type="hidden" name="services[]" value="{{$item}}">
 															@endforeach
+															{{$pav_type}}
+															<input type="hidden" name="pav_name" value="{{$pav_type}}">
 														</td>
 													</tr>
+													@if($pool_type != "")
+													<tr>
+														<td colspan="2 center"><strong><b>Pool Type</b></strong></td>
+														<input type="hidden" name="pool_type" value="{{$pool_type}}">
+														
+													</tr>
+													<tr>
+														<td colspan="2 center">{{$pool_type}}</td>
+													</tr>
+													@endif
+													@if($room_type != "")
+													<tr>
+														<td colspan="2 center"><strong><b>Room Type</b></strong></td>
+														
+													</tr>
+													<tr>
+														<td colspan="2 center">{{$room_type}}</td>
+														<input type="hidden" name="room_type" value="{{$room_type}}">
+														<input type="hidden" name="no_room" value="{{$no_room}}">
+													</tr>
+													<tr>
+														<td colspan="2 center">{{$no_room}}</td>
+													</tr>
+													@endif
+
 													<tr>
 														<td class="" colspan="2">
 															<span class="pull-right" style="margin-right: 50px;"><strong >Total:</strong>

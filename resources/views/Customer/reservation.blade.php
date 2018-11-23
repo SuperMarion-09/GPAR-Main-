@@ -35,7 +35,17 @@
 					<div class="arrow-box"><span class="icon fa fa-angle-right"></span></div>
 				</div>
 			</div>
-
+			@if(count($errors))
+				<div class="col col-md-8">
+					<div class="alert alert-danger">
+						<ul>
+							@foreach($errors->all() as $error)
+							<li>{{$error}}</li>
+							@endforeach
+						</ul>
+					</div>
+				</div>
+				@endif
 			<!--Form Column-->
 			<form method="POST" action="/reservation/checkdate">	
 				{{csrf_field()}}
@@ -45,6 +55,7 @@
 						<div class="clearfix">
 							<div class="column col-md-9 col-sm-12 col-xs-12">
 								<div class="clearfix">
+
 
 									<div class="form-group col-md-3 col-sm-6 col-xs-12">
 										<div class="group-inner">
@@ -82,618 +93,248 @@
 												<option value="{{$room->type}}">{{$room->type}}</option>
 												@endforeach
 											</select>
-										</select>
+
+										</div>
+										<div class="group-inner" id="type-of-pool" style="display: none;">
+											<label>Pool type</label>
+											<select name="pool_name" id="optpools" onchange="show_pools()">
+												<option default value=""  selected="">Type of Pools</option>
+												@foreach($pools as $pool)
+												<option value="{{$pool->pool_type}}">{{$pool->pool_type}}</option>
+												@endforeach
+											</select>
+
+										</div>
+										<div class="group-inner" id="type-of-event" style="display: none;">
+											<label>Pavilion type</label>
+											<select name="pavilion_name" id="optpav" onchange="show_pavilions()">
+												<option default value="" selected="">Type of Pavilion</option>
+												@foreach($events as $pavilion)
+												<option value="{{$pavilion->item_name}}">{{$pavilion->item_name}}</option>
+												@endforeach										
+											</select>
+
+										</div>
 									</div>
-									<div class="group-inner" id="type-of-pool" style="display: none;">
-										<label>Pool type</label>
-										<select name="pool_name" id="optpools" onchange="show_pools()">
-											<option class="" disabled selected="">Type of Pools</option>
-											@foreach($pools as $pool)
-											<option value="{{$pool->pool_type}}">{{$pool->pool_type}}</option>
-											@endforeach
-										</select>
-									</select>
 								</div>
-								<div class="group-inner" id="type-of-event" style="display: none;">
-									<label>Pavilion type</label>
-									<select class="form-control" name="pavilion_name" id="optpav" onchange="show_pavilions()">
-										<option class="" disabled selected="">Type of Pavilion</option>
-										@foreach($events as $pavilion)
-										<option value="{{$pavilion->item_name}}">{{$pavilion->item_name}}</option>
-										@endforeach										
-									</select>
-								</select>
+							</div>
+
+
+							<!--Avalability Column-->
+							<div class="avalability-column col-md-3 col-sm-12 col-xs-12">
+								<button type="Submit">
+									<span class="big-txt">Check Availabilty</span>
+								</button>
 							</div>
 						</div>
+						@if(session()->has('notif'))
+
+						<center><div class="col col-md-12 ">
+							<div class="alert alert-info ">
+								<button class="close" type="button" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<strong>Notification</strong><p><center>{{session()->get('notif')}}</center></p>
+							</div>
+						</div></center>
+
+						@endif
+
+
 					</div>
 				</div>
-
-				<!--Avalability Column-->
-				<div class="avalability-column col-md-3 col-sm-12 col-xs-12">
-					<button type="Submit">
-						<span class="big-txt">Check Availabilty</span>
-					</button>
-				</div>
-			</div>
-
-		</div>
+			</form>
+		</div>        
 	</div>
-</form>
-</div>        
-</div>
 </section>
 
 <br/>
+
+
 <!-- e reservation header -->
 <!-- room reservation -->
 @foreach($rooms as $room)
 @include('customer.Reservation_Kind.family-room')
 @endforeach
+@foreach($pools as $pool)
+@include('customer.Reservation_Kind.pool')
+@endforeach
+@foreach($events as $event)
+@include('customer.Reservation_Kind.event')	
+@endforeach
+<div class="col-md-12">
+	<center>
+	<button type="button" id="switch-1" 
+											class = "btn btn-tbl-delete btn-md delete" data-toggle="modal" data-target="#delete" data-id=""><i class="fa fa-file-text-o"></i></button><label>Terms and Condition</label></center>
+</div>
 
 
 
 <!-- room e -->
 
-<!-- customer information form -->
-<section  class="ev" id="customer-info" style="display: none;" >
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12 col-lg-12">
-				<!-- form start -->
-				
-				<div class="panel panel-default">
-					<div class="panel-heading"><h3>Personal information</h3></div>
-					<div class="panel-body">
-						<!-- personal info start -->
-						<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-							<label for="fname-info">First name: </label>
-							<input class="form-control" type="text" name="fname-info" placeholder="First name" required/>
-						</div>
-						<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-							<label for="lname-info">Last name: </label>
-							<input class="form-control" type="text" name="lname-info" placeholder="Last name" required/>
-						</div>
-						<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-							<label for="bday">Birthday </label>
-							<input type="text" name="bday" class="form-control" id="bday" placeholder="Select Date" required>
-						</div>
 
-						<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-							<label for="email-info">Email: <span><i>Working email address</i></span></label>
-							<input class="form-control" type="email" name="email-info" placeholder="Email Address"required/>
-						</div>
-						<div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">
-							<label for="address-info">Address</label>
-							<textarea class="form-control address-info" rows="3" id="address-info" placeholder="Address"></textarea>
-						</div>
-						<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-							<label for="contact-info">Contact: </label>
-							<input class="form-control" type="tel" name="contact-info" required/>
-						</div>
-						<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-							<div class="radio radio-yellow">
-								<label><input type="radio" name="gender" checked>Male</label>
-							</div>
-							<div class="radio radio-yellow">
-								<label><input type="radio" name="gender">Female</label>
-							</div>
-						</div>
-
-						<!-- personal info e -->
-
-					</div>
-
-					
-					<!-- form e -->
-				</div>
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Confirmation</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
+			
+				<div class="modal-body">
+					<input type="hidden" class="deleted_album" name="deleted_album" id="album_id">
+					<p>By proceeding with the reservation you accept and agree with The Grand Pavillion Hotel and Resort that the reservation (details of which are set out above), if accepted by us, shall be on the terms and conditions as follows:
+<br>
+A. General
+<br>
+• The website thegrandpavillion.com (the "Site"), including all content and infrastructure of the Site, is owned and operated by the management and is provided for your (the "User" or "you") personal non-commercial use only, subject to the terms and conditions set out below.
+<br>
+• These Terms and Conditions of Use (the "Terms and Conditions" or "T&Cs"), as may be amended from time to time, shall apply to all acts engaged in by the User who makes use of the hotel reservation service and events reservation service provided by the management that is made available online on the Site through any computer and mobile device, hereunder collectively referred to as the "Service."
+<br>
+• The Site provides an online platform through which hotels, including all types of temporary accommodation, and events services, including all types of events activities, events packages, can advertise their rooms for reservation, and through which visitors to the Site can place reservations and payments for these rooms, event activities, pools and packages. By making a reservation through the Site, you enter into a direct, legally binding contractual relationship with the hotel and the tour supplier where you book. In this transaction, the management acts solely as an intermediary between you and the hotel, transmitting the details of your reservation to the relevant hotel and our affiliate service provider, then sending you a confirmation email for and on behalf of the hotel.
+
+<br>
+B. Our Services
+<br>
+• The Service offered by the management enables you to reserve rooms, pavillion, pools and other types of temporary accommodation. The reservation for the rooms and reserved events activities at the Posted Facility is made directly by yourself through the internet via the Site. The Posted Facilities provide reservations to their accommodation ("Accommodation Services") and events services ("Events Services") voluntarily and meet their obligations to users of the Site as their own responsibility.
+<br>
+• Refunds are only accepted within 7 days of the date of purchase. To be eligible for a refund, the customer had already paid initial payment for their reservation.
+<br>
+• To refund your payment, please contact us at thegrandpavilionandresort@gmail.com. To process your refund, we require a proof of purchase. You will be responsible for any other costs for the refund. Having a refund prior to 3 days of the said event is not accepted.
+<br>
+• In the event you complete a booking based on a rate that has been incorrectly posted, the Hotel reserves the right to correct the rate or cancel the reservation at its discretion, and will contact you directly in order to do so.
+<br>
+• A reservation is valid immediately after booking. The management must always be informed of a cancellation in writing. Not making the payment is not a cancellation!
+<br>
+C. Temporary Discontinuance of the Service
+<br>
+• The Site is undergoing maintenance operations or technical upgrades.
+<br>
+• The occurrence, or likeliness of occurrence of, an act of God or other state of emergency which makes operation of the Site or the Services impossible
+<br>
+D. User Obligations
+<br>
+• The Site and the Service are for your own private use. You agree not to reproduce or transmit any information obtained therein or otherwise allow such information to be used by a third party in any way, for any purpose other than for your own private use, unless you obtain prior approval of the management and the relevant Posted Facility to do otherwise.
+<br>
+• When you undertake a Usage Agreement with a Posted Facility, you agree to comply with any terms and conditions, rules, and other requirements separately determined by the Posted Facility.
+<br>
+• If you breach any of the above user responsibilities as set forth in the preceding items, or the management otherwise determines any of your actions to be incompatible with the operation of the Service, the management reserves the right to cause you to cease such act, and cancel the Usage Agreement between you and the relevant Posted Facility, and may take necessary measures (including legal measures) against you, such as suspension of the use of all the services relating to the Site and the Service, or demand for payment of damages.
+
+<br></p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-danger "data-dismiss="modal">Ok</button>
+				</div>
+			</form>
 		</div>
-
-	</section>
-	<!-- customer information form end-->
-
-
-	<section  class="ev" id="room-info" style="display: none;" >
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 col-lg-12">
-					<!-- form start -->
-					
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Room information</h3></div>
-						<div class="panel-body">
-							<!-- personal info start -->
-
-							<div class="form-group col-md-4 col-lg-4 col-xs-12 col-sm-12">
-								<label for="timeinroom">time in: </label>
-								<input class="form-control" type="time" name="timeinroom"  required/>
-							</div>
-							<div class="form-group col-md-4 col-lg-4 col-xs-12 col-sm-12">
-								<label for="timeoutroom">time out: </label>
-								<input class="form-control" type="time" name="timeoutroom"  required/>
-							</div>
-							<div class="form-group col-md-4 col-lg-4 col-xs-12 col-sm-12">
-								<label for="paxroom">No of pax: </label>
-								<input class="form-control" type="number" name="paxroom" placeholder="No of pax" min="1" max="5" required/>
-							</div>
-
-
-
-
-							<!-- personal info e -->
-
-						</div>
-
-						
-						<!-- form e -->
-					</div>
-				</div>
-			</div>
-
-		</section>
-
-		<!-- pool reservation-->
-		@foreach($pools as $pool)
-		@include('customer.Reservation_Kind.pool')
-		@endforeach
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
 
 		
-		<section class="pool-res" id="pool-res" style="display: none;">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 col-lg-12">
-						<!-- form start -->
-						
-						<div class="panel panel-default">
-							<div class="panel-heading"><h3>Pool Reservation</h3></div>
-							<div class="panel-body">
-								<!-- personal info start -->
-								<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-									<label for="time-in-pool">Time in: </label>
-									<input class="form-control" type="time" name="time-in-pool" placeholder="" required/>
-								</div>
-								<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-									<label for="time-out-pool">Time out: </label>
-									<input class="form-control" type="time" name="time-out-pool" placeholder="" required/>
-								</div>
-								<div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12">
-									<label for="pax-pool">Number of pax: <span><i> Minimum of 25 person</i></span></label>
-									<input type="number" name="pax-pool" class="form-control" id="pax-pool" placeholder="" min="25" required>
-								</div>
+		$('.delete').click(function(){
 
-								<!-- personal info e -->
-								<button  class="btn btn-style-two center-block">Next</button>
-								<br>
+			var record_id = $(this).data('id');
 
-							</div>
+			$('.deleted_album').val(record_id);
 
-							
-							<!-- form e -->
-						</div>
-					</div>
-				</div>
+		});
 
-			</section>
-			
+	});
+</script>
 
-			<!--  RESERVATION Event-->
-			<section class="ev" style="display: none;" id="eventform">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-lg-12">
-							<!-- form start -->
-							
-							<div class="panel panel-default">
-								<div class="panel-heading"><h3>Event information</h3></div>
-								<div class="panel-body">
-									<!-- event info start -->
-									<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-										<label for="occ-event">Event name:<span><i> birthdays,debut,meetings,wedding etc.</i></span>  </label>
-										<input class="form-control" type="text" name="occ-event" placeholder="Event name" required/>
-									</div>
-									<div class="form-group col-md-6 col-lg-6 col-xs-12 col-sm-12">
-										<label for="motif">Theme or motif:<span><i> black and white,silver and gold etc.</i></span> </label>
-										<input class="form-control" type="text" name="motif" placeholder="Your theme/motif" required/>
-									</div>
-									<div class="form-group col-md-4 col-lg-4 col-xs-12 col-sm-12">
-										<label for="timein">Time in: </label>
-										<input class="form-control" type="time" name="timein" required/>
-									</div>
-									<div class="form-group col-md-4 col-lg-4 col-xs-12 col-sm-12">
-										<label for="timein">Time out: </label>
-										<input class="form-control" type="time" name="timein" required/>
-									</div>
-									<div class="form-group col-md-4 col-lg-4 col-xs-12 col-sm-12">
-										<label for="nopax">Number of pax/guest <span><i> Minimum of 20pax.</i></span> </label>
-										<input class="form-control" type="number" name="nopax" min="20" placeholder="150" required/>
-									</div>
-									<!-- event info e -->
-									<!-- event inclusion start -->
-									<div class="divider"> </div>
-									<H3>INCLUSIONS</H3>
-									<div class="divider"></div>
-									<div class="row">
-										<!-- food list start -->
-										<div class="foods-events">
-											<H4>Foods</H4>
-											<div class="divider"></div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/lechon.jpg" />
-													<input type="checkbox" name="image_check[]" value="1" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Lechon</h5></div>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/cookies.jpg" />
-													<input type="checkbox" name="image_check[]" value="2" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Cookies</h5></div>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/pica.jpg" />
-													<input type="checkbox" name="image_check[]" value="3" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Pica-Pica snacks</h5></div>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/karekare.jpg" />
-													<input type="checkbox" name="image_check[]" value="4" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Kare-Kare</h5></div>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/salad.jpg" />
-													<input type="checkbox" name="image_check[]" value="5" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Salad</h5></div>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/chickenteri.jpg" />
-													<input type="checkbox" name="image_check[]" value="6" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Chicken Teriyaki</h5></div>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/foods/tempura.jpg" />
-													<input type="checkbox" name="image_check[]" value="6" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<div class="desc"><h5>Tempura</h5></div>
-											</div>
-										</div>
-										<!-- food list e -->
-									</div>
-									<div class="divider"></div>
-									<div class="row"> 
-										<!-- service list start -->
-										<div class="services-events">
-											<H4>Services</H4>
-											<div class="divider"></div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/pavilion.png" />
-													<input type="checkbox" name="image_check[]" value="7" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Pavilion</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/lights.png" />
-													<input type="checkbox" name="image_check[]" value="8" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Lights</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/photographer.png" />
-													<input type="checkbox" name="image_check[]" value="9" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Photographer</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/poolusage.png" />
-													<input type="checkbox" name="image_check[]" value="10" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Pool usage</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/roomusage.png" />
-													<input type="checkbox" name="image_check[]" value="11" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Room usage</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/styling.png" />
-													<input type="checkbox" name="image_check[]" value="12" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Styling </h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/gowns.png" />
-													<input type="checkbox" name="image_check[]" value="13" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Gowns</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/videoke.png" />
-													<input type="checkbox" name="image_check[]" value="14" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Videoke</h5>
-											</div>
-											<div class="col-xs-4 col-sm-3 col-md-2 nopad text-center">
-												<label class="image-checkbox">
-													<img class="img-responsive" src="css/images/events/services/photobooth.png" />
-													<input type="checkbox" name="image_check[]" value="15" />
-													<i class="glyphicon glyphicon-ok hidden"></i>
-												</label>
-												<h5>Photobooth</h5>
-											</div>
-										</div>
-									</div>
-									<!-- food list start -->
+<!--End Services Section--> 
 
-									<!-- event inclusion e -->
-									<!-- other requests -->
-									<div class="divider"></div>
-									<div class="form-group col-md-12 col-lg-12 col-xs-12 col-sm-12 text-request">
-										<label for="req">Personal Request <span><i>Please specify your personal request,additional foods or any other.</i></span> </label>
-										<textarea class="form-control" rows="7" id="req"></textarea>
-									</div>
-								</div>
+<script type="text/javascript">
 
-								<br>
-							</div>
+	function show_fields()
+	{
+		var select_status=$('#optservice').val();
+		/* if select personal from select box then show my text box */
 
-							<!-- form e -->
-						</div>  
-					</div>
-				</div>
-			</section>
-			<!-- event reservation end -->
-			<!--Services Section-->
-			@foreach($events as $event)
-			@include('customer.Reservation_Kind.event')	
+		if(select_status == 'eventserv')
+		{
+			$('#services-section').hide();
+			$('#type-of-event').show();  
+			$('#pool-res').hide();
+			$('#room-res').hide();
+			$('#type-of-room').hide();
+			$('#customer-info').hide();
+			$('#room-info').hide();
+			$('#type-of-pool').hide();
+
+			$('select#optrooms').prop('selectedIndex',0);
+			$('select#optpav').prop('selectedIndex',0);
+			$('select#optpools').prop('selectedIndex',0);
+
+			@foreach($pools as $pool)
+			$('#{{$pool->pool_type}}').hide();
 			@endforeach
-			<section class="services-section" id="services-section" style="background-image:url(images/background/leaves-pattern.png);">
-				<div class="auto-container">
-					<div class="row clearfix">
-						<!--Column-->
-						<div class="title-column col-md-12 col-sm-12 col-xs-12">
-							<div class="inner-box text-center">
-								<!--Sec Title-->
-								<div class="sec-title">
-									<h2>Our Service</h2>
-									<h3>Learn more</h3>
-								</div>
-
-								<div class="text">We offer three different services with a very affordable price</div>
-							</div>
-						</div>
-
-						<!--Content Column-->
-						<div class="content-column col-md-12 col-sm-12 col-xs-12">
-
-							<div class="row clearfix" ">
-								<!--Service Block-->
-								<div class="service-block col-md-4 col-sm-4 col-xs-12">
-									<div class="inner">
-										<div class="icon-box"><span class="flaticon-calendar-1"></span></div>
-										<h3>Events</h3>
-										<div class="text">Best place for your events needs</div>
-										<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
-									</div>
-								</div>
-
-								<!--Service Block-->
-								<div class="service-block col-md-4 col-sm-4 col-xs-12">
-									<div class="inner">
-										<div class="icon-box"><span class="icon flaticon-bed"></span></div>
-										<h3>Rooms</h3>
-										<div class="text">Affordable room rates</div>
-										<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
-									</div>
-								</div>
-
-								<!--Service Block-->
-								<div class="service-block col-md-4 col-sm-4 col-xs-12">
-									<div class="inner">
-										<div class="icon-box"><span class="icon flaticon-exercise"></span></div>
-										<h3>Pools</h3>
-										<div class="text">Enjoy our clean pool </div>
-										<a href="#id" class="theme-btn btn-style-two btn-sm">view more</a>
-									</div>
-								</div>  
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+			@foreach($rooms as $room)
+			$('#{{$room->type}}').hide();
+			@endforeach
 
 
-			<!--End Services Section--> 
+		}
+		if (select_status == 'poolserv')
+		{
 
-			<script type="text/javascript">
+			$('#type-of-pool').show();
+			$('#services-section').hide();
+			$('#eventform').hide();
+			$('#room-res').hide();
+			$('#type-of-room').hide();
+			$('#customer-info').hide();
+			$('#room-info').hide();
+			$('#type-of-room').hide();
+			$('#type-of-event').hide();  
+			@foreach($rooms as $room)
+			$('#{{$room->type}}').hide();
+			@endforeach
+			@foreach($events as $event)
+			$('#{{$event->item_name}}').hide();
+			@endforeach
 
-				function show_fields()
-				{
-					var select_status=$('#optservice').val();
-					/* if select personal from select box then show my text box */
+			$('select#optrooms').prop('selectedIndex',0);
+			$('select#optpav').prop('selectedIndex',0);
+			$('select#optpools').prop('selectedIndex',0);
+		}
+		if (select_status == 'roomserv')
+		{
+			$('#type-of-room').show();
 
-					if(select_status == 'eventserv')
-					{
-						$('#services-section').hide();
-						$('#type-of-event').show();  
-						$('#pool-res').hide();
-						$('#room-res').hide();
-						$('#type-of-room').hide();
-						$('#customer-info').hide();
-						$('#room-info').hide();
-						$('#type-of-pool').hide();
-						
-						$('select#optrooms').prop('selectedIndex',0);
-						
-						$('select#optpools').prop('selectedIndex',0);
-
-					}
-					if (select_status == 'poolserv')
-					{
-						
-						$('#type-of-pool').show();
-						$('#services-section').hide();
-						$('#eventform').hide();
-						$('#room-res').hide();
-						$('#type-of-room').hide();
-						$('#customer-info').hide();
-						$('#room-info').hide();
-						$('#type-of-room').hide();
-						@foreach($rooms as $room)
-						$('#{{$room->type}}').hide();
-						@endforeach
-						$('select#optrooms').prop('selectedIndex',0);
-					}
-					if (select_status == 'roomserv')
-					{
-						$('#type-of-room').show();
-						
-						$('#room-res').show();
-						$('#pool-res').hide();
-						$('#eventform').hide(); 
-						$('#services-section').hide();
-						$('#customer-info').hide();
-						$('#type-of-pool').hide();
-						@foreach($pools as $pool)
-						$('#{{$pool->pool_type}}').hide();
-						@endforeach
-						$('select#optpools').prop('selectedIndex',0);
-
-						
-
-					}
-
-				}
-
-				function show_rooms() 
-				{
-					@foreach($rooms as $room)
-					var selected_rooms = $('#optrooms').val();
+			$('#room-res').show();
+			$('#pool-res').hide();
+			$('#eventform').hide(); 
+			$('#services-section').hide();
+			$('#customer-info').hide();
+			$('#type-of-pool').hide();
+			$('#type-of-event').hide();  
+			@foreach($pools as $pool)
+			$('#{{$pool->pool_type}}').hide();
+			@endforeach
+			@foreach($events as $event)
+			$('#{{$event->item_name}}').hide();
+			@endforeach
+			
+			$('select#optrooms').prop('selectedIndex',0);
+			$('select#optpav').prop('selectedIndex',0);
+			$('select#optpools').prop('selectedIndex',0);
 
 
-					if (selected_rooms == '{{$room->type}}') 
-					{
-						$('#{{$room->type}}').show();
-						$('#pool-res').hide();
-						$('#services-section').hide();
-						$('#eventform').hide();
-						$('#room-res').hide();
-						$('#customer-info').hide();
-						$('#room-info').hide();
 
-					}
-					if (selected_rooms != '{{$room->type}}') 
-					{
-						$('#{{$room->type}}').hide();
+		}
 
-					}
+	}
 
-					@endforeach
+	
 
-				}
-
-				function show_pools() 
-				{
-					
-					var selected_pools = $('#optpools').val();
-					@foreach($pools as $pool)
-					if (selected_pools == '{{$pool->pool_type}}') 
-					{
-						$('#{{$pool->pool_type}}').show();
-						$('#pool-res').hide();
-						$('#services-section').hide();
-						$('#eventform').hide();
-						$('#room-res').hide();
-						$('#customer-info').hide();
-						
-
-					}
-					if (selected_pools != '{{$pool->pool_type}}') 
-					{
-						$('#{{$pool->pool_type}}').hide();
-
-					}
-
-					@endforeach
-
-				}
-				function show_pavilions() 
-				{
-					@foreach($events as $event)
-					var selected_pav = $('#optpav').val();
-
-
-					if (selected_pav == '{{$event->item_name}}') 
-					{
-						$('#{{$event->item_name}}').show();
-						$('#pool-res').hide();
-						$('#services-section').hide();
-						$('#eventform').hide();
-						$('#room-res').hide();
-						$('#customer-info').hide();
-						$('#room-info').hide();
-
-					}
-					if (selected_pav != '{{$event->item_name}}') 
-					{
-						$('#{{$event->item_name}}').hide();
-
-					}
-
-					@endforeach
-
-				}
-				function customerInfo() 
-				{
-					$('#customer-info').show();
-					$('#services-section').hide();
-					$('#eventform').hide();  
-					$('#pool-res').hide();
-					$('#room-res').hide();
-					$('#type-of-room').hide();
-					$('#standard-room').hide();
-					$('#family-room').hide();
-					$('#justine-room').hide();
-					$('#chester-room').hide();
-					$('#room-info').hide();
-
-				}
-			</script>
+	
+</script>
 
 
 
 
-			@endsection
+@endsection
